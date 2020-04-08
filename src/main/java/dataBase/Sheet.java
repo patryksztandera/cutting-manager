@@ -79,19 +79,37 @@ public class Sheet {
                     "password");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM sheet");
-            // ResultSet locationResultSet = stmt.executeQuery("SELECT * FROM location");
-            // ResultSet typeResultSet = stmt.executeQuery("SELECT * FROM type");
 
             conn.setAutoCommit(false);
 
             conn.commit();
 
             while(rs.next()) {
+                int idType = rs.getInt("id_type");
+                int idLocation = rs.getInt("id_location");
+                String type = "";
+                String location = "";
+
+                Statement typeStmt = conn.createStatement();
+                ResultSet typeRs = typeStmt.executeQuery("SELECT type FROM type WHERE id_type='"+idType+"';");
+
+                Statement locStmt = conn.createStatement();
+                ResultSet locRs = locStmt.executeQuery("SELECT location FROM location WHERE id_location='"+idLocation+"';");
+
+                while (typeRs.next()){
+                    type = typeRs.getString("type");
+                }
+                while (locRs.next()){
+                    location = locRs.getString("location");
+                }
+
                 System.out.println(rs.getDouble("id_sheet")
                         + " : " + rs.getTimestamp("time")
                         + " : " + rs.getDouble("length")
                         + " , " + rs.getDouble("width")
-                        + " , " + rs.getDouble("thickness"));
+                        + " , " + rs.getDouble("thickness")
+                        + " : " + type
+                        + " : " + location);
             }
 
             conn.close();
