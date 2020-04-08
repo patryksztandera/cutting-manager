@@ -88,7 +88,8 @@ public class Sheet {
 
             while(rs.next()) {
                 System.out.println(rs.getDouble("id_sheet")
-                        + " : " + rs.getTime("time")
+                        + " : " + rs.getDate("time")
+                        + " " + rs.getTime("time")
                         + " : " + rs.getDouble("length")
                         + " , " + rs.getDouble("width")
                         + " , " + rs.getDouble("thickness"));
