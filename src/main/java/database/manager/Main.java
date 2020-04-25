@@ -15,9 +15,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         FXMLLoader loader = new FXMLLoader();
-        Pane pane = loader.load(getClass().getResource("/fxml/main.fxml"));
+        Pane pane = loader.load(getClass().getResource("/fxml/Main.fxml"));
         Scene scene = new Scene(pane);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Sheet metal manager");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
