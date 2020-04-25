@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
 
 group 'projects'
@@ -16,4 +18,12 @@ dependencies {
 
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
     runtime "mysql:mysql-connector-java:8.0.15"
+
 }
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    version = '11.0.2'
+}
+
+mainClassName = 'Main'
