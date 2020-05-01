@@ -3,7 +3,7 @@ package database.manager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.sql.*;
@@ -14,10 +14,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        FXMLLoader loader = new FXMLLoader();
-        Pane pane = loader.load(getClass().getResource("/fxml/Main.fxml"));
+        Locale.setDefault(new Locale("en"));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Main.fxml"));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("bundles.language");
+        loader.setResources(resourceBundle);
+        BorderPane pane = loader.load();
         Scene scene = new Scene(pane);
-        primaryStage.setTitle("Sheet metal manager");
+        primaryStage.setTitle(resourceBundle.getString("application.name"));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -26,7 +29,7 @@ public class Main extends Application {
 
         launch(args);
 
-        String check= "go";
+      /*  String check= "go";
         String exit ="exit";
         String example = "go";
 
@@ -74,6 +77,7 @@ public class Main extends Application {
                 }
             }
         }
+        */
     }
 }
 

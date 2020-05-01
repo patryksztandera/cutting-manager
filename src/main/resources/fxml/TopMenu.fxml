@@ -5,16 +5,15 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 
-
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="database.manager.controllers.TopMenuToggleController">
    <children>
-      <ToggleButton fx:id="sheetToggleButton" mnemonicParsing="false" onAction="#openSheet" prefHeight="35.0" prefWidth="100.0" text="Sheet">
+      <ToggleButton fx:id="sheetToggleButton" mnemonicParsing="false" onAction="#openSheet" prefHeight="35.0" prefWidth="100.0" text="%sheet">
          <toggleGroup>
             <ToggleGroup fx:id="MenuGroup" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="typeToggleButton" mnemonicParsing="false" onAction="#openType" prefHeight="35.0" prefWidth="100.0" text="Type" toggleGroup="$MenuGroup" />
-      <ToggleButton fx:id="locationToggleButton" mnemonicParsing="false" onAction="#openLocation" prefHeight="35.0" prefWidth="100.0" text="Location" toggleGroup="$MenuGroup" />
+      <ToggleButton fx:id="typeToggleButton" mnemonicParsing="false" onAction="#openType" prefHeight="35.0" prefWidth="100.0" text="%sheet.type" toggleGroup="$MenuGroup" />
+      <ToggleButton fx:id="locationToggleButton" mnemonicParsing="false" onAction="#openLocation" prefHeight="35.0" prefWidth="100.0" text="%sheet.location" toggleGroup="$MenuGroup" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
