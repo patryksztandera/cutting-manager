@@ -1,4 +1,4 @@
-package database.manager;
+package manager;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
+/*
         Locale.setDefault(new Locale("en"));
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Main.fxml"));
         ResourceBundle resourceBundle = ResourceBundle.getBundle("bundles.language");
@@ -22,14 +22,14 @@ public class Main extends Application {
         Scene scene = new Scene(pane);
         primaryStage.setTitle(resourceBundle.getString("application.name"));
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();*/
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        launch(args);
+        //launch(args);
 
-      /*  String check= "go";
+        String check= "go";
         String exit ="exit";
         String example = "go";
 
@@ -54,7 +54,10 @@ public class Main extends Application {
 
                     Type type = new Type();
                     type.selectAll();
-
+/*
+                    String place = scanner.nextLine();
+                    location.insert(place);
+*/
                     double length = scanner.nextDouble();
                     double width = scanner.nextDouble();
                     double thickness = scanner.nextDouble();
@@ -63,6 +66,7 @@ public class Main extends Application {
 
                     Sheet sheet = new Sheet(length, width, thickness, idLocation, idType);
                     sheet.insert();
+
                 }
                 else if (operation.equals(delete)) {
 
@@ -77,7 +81,7 @@ public class Main extends Application {
                 }
             }
         }
-        */
+
     }
 }
 

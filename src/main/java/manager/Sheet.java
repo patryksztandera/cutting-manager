@@ -1,9 +1,12 @@
-package database.manager;
+package manager;
+
+import manager.database.DML;
 
 import java.sql.*;
 
 public class Sheet {
 
+    private DML dml = new DML();
     private double length;
     private double width;
     private double thickness;
@@ -21,52 +24,19 @@ public class Sheet {
     }
 
     void insert() throws SQLException, ClassNotFoundException{
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/management?serverTimezone=Europe/Warsaw",
-                    "root",
-                    "password");
-            Statement stmt = conn.createStatement();
-
-            conn.setAutoCommit(false);
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            stmt.executeUpdate("INSERT INTO sheet VALUES (NULL,'"+
+            dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'"+
                     timestamp+"','"+
                     length+"','"+
                     width+"','"+
                     thickness+"','"+
                     idLocation+"','"+
                     idType+"');");
-
-            conn.commit();
-
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     void delete(double id) throws SQLException, ClassNotFoundException{
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/management?serverTimezone=Europe/Warsaw",
-                    "root",
-                    "password");
-            Statement stmt = conn.createStatement();
-
-            conn.setAutoCommit(false);
-
-            stmt.executeUpdate("DELETE FROM sheet WHERE id_sheet='"+id+"';");
-
-            conn.commit();
-
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            dml.dataManipulation("DELETE FROM sheet WHERE id_sheet='"+id+"';");
     }
 
     void selectAll()throws SQLException, ClassNotFoundException{

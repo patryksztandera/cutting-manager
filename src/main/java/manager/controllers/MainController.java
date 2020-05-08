@@ -1,4 +1,4 @@
-package database.manager.controllers;
+package manager.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
