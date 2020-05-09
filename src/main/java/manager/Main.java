@@ -13,8 +13,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-/*
-        Locale.setDefault(new Locale("en"));
+
+        Locale.setDefault(new Locale("pl"));
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Main.fxml"));
         ResourceBundle resourceBundle = ResourceBundle.getBundle("bundles.language");
         loader.setResources(resourceBundle);
@@ -22,13 +22,13 @@ public class Main extends Application {
         Scene scene = new Scene(pane);
         primaryStage.setTitle(resourceBundle.getString("application.name"));
         primaryStage.setScene(scene);
-        primaryStage.show();*/
+        primaryStage.show();
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-        //launch(args);
-
+        launch(args);
+/*
         String check= "go";
         String exit ="exit";
         String example = "go";
@@ -78,7 +78,7 @@ public class Main extends Application {
                 }
             }
         }
-
+*/
     }
 }
 
