@@ -15,7 +15,7 @@ public class Location {
         dml.dataManipulation("DELETE FROM location WHERE id_location='"+id+"';");
     }
 
-    void selectAll()throws SQLException, ClassNotFoundException{
+    void selectAll()throws ClassNotFoundException{
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,7 +31,7 @@ public class Location {
             conn.commit();
 
             while(rs.next()) {
-                System.out.println(rs.getInt("id_location") + " : " + rs.getString("location"));
+                System.out.println(rs.getInt("id_location")+" : "+rs.getString("location"));
             }
 
             conn.close();

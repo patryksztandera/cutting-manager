@@ -7,15 +7,19 @@ import java.sql.*;
 public class Type {
 
     private DML dml = new DML();
-    void insert(String type) throws ClassNotFoundException{
+    void insertTypeOnly(String type) throws ClassNotFoundException{
             dml.dataManipulation("INSERT INTO type VALUES (NULL,'"+type+"',NULL);");
     }
 
-    void delete(double id) throws SQLException, ClassNotFoundException{
+    void insert(String type, String information) throws ClassNotFoundException{
+        dml.dataManipulation("INSERT INTO type VALUES (NULL,'"+type+"','"+information+"');");
+    }
+
+    void delete(double id) throws ClassNotFoundException{
             dml.dataManipulation("DELETE FROM type WHERE id_type='"+id+"';");
     }
 
-    void selectAll()throws SQLException, ClassNotFoundException{
+    void selectAll()throws ClassNotFoundException{
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

@@ -54,10 +54,7 @@ public class Main extends Application {
 
                     Type type = new Type();
                     type.selectAll();
-/*
-                    String place = scanner.nextLine();
-                    location.insert(place);
-*/
+
                     double length = scanner.nextDouble();
                     double width = scanner.nextDouble();
                     double thickness = scanner.nextDouble();

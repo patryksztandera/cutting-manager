@@ -23,7 +23,7 @@ public class Sheet {
         this.idType = idType;
     }
 
-    void insert() throws SQLException, ClassNotFoundException{
+    void insert() throws ClassNotFoundException{
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'"+
@@ -35,11 +35,11 @@ public class Sheet {
                     idType+"');");
     }
 
-    void delete(double id) throws SQLException, ClassNotFoundException{
+    void delete(double id) throws ClassNotFoundException{
             dml.dataManipulation("DELETE FROM sheet WHERE id_sheet='"+id+"';");
     }
 
-    void selectAll()throws SQLException, ClassNotFoundException{
+    void selectAll()throws ClassNotFoundException{
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

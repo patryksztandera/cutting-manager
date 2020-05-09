@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class DML {
 
-    public void dataManipulation(String sqlStatement) throws ClassNotFoundException{
+    public void dataManipulation(String sqlStatement) throws ClassNotFoundException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(
