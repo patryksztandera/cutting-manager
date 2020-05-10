@@ -1,28 +1,27 @@
 package manager;
 
 import manager.database.DML;
+import manager.utils.DatabaseUtils;
 
 import java.sql.*;
 
 public class Location {
 
     private DML dml = new DML();
-    void insert(String location) throws ClassNotFoundException{
-        dml.dataManipulation("INSERT INTO location VALUES (NULL,'"+location+"');");
+
+    void insert(String location) {
+        dml.dataManipulation("INSERT INTO location VALUES (NULL,'" + location + "');");
     }
 
-    void delete(double id) throws ClassNotFoundException{
-        dml.dataManipulation("DELETE FROM location WHERE id_location='"+id+"';");
+    void delete(double id) {
+        dml.dataManipulation("DELETE FROM location WHERE id_location='" + id + "';");
     }
 
-    void selectAll()throws ClassNotFoundException{
+    void selectAll() {
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/management?serverTimezone=Europe/Warsaw",
-                    "root",
-                    "password");
+            Connection conn = DatabaseUtils.sqlConnection();
+
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM location");
 
@@ -30,10 +29,9 @@ public class Location {
 
             conn.commit();
 
-            while(rs.next()) {
-                System.out.println(rs.getInt("id_location")+" : "+rs.getString("location"));
+            while (rs.next()) {
+                System.out.println(rs.getInt("id_location") + " : " + rs.getString("location"));
             }
-
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();

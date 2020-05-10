@@ -1,11 +1,10 @@
 package manager;
 
+import javafx.scene.layout.Pane;
+import manager.utils.FxmlUtils;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
 import java.sql.*;
 import java.util.*;
 
@@ -14,13 +13,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Locale.setDefault(new Locale("pl"));
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Main.fxml"));
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("bundles.language");
-        loader.setResources(resourceBundle);
-        BorderPane pane = loader.load();
+        Locale.setDefault(new Locale("en"));
+        Pane pane = FxmlUtils.fxmlLoad("/fxml/Main.fxml");
         Scene scene = new Scene(pane);
-        primaryStage.setTitle(resourceBundle.getString("application.name"));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

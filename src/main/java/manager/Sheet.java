@@ -1,6 +1,7 @@
 package manager;
 
 import manager.database.DML;
+import manager.utils.DatabaseUtils;
 
 import java.sql.*;
 
@@ -13,9 +14,10 @@ public class Sheet {
     private int idLocation;
     private int idType;
 
-    Sheet(){}
+    Sheet() {
+    }
 
-    Sheet(double length, double width, double thickness, int idLocation, int idType){
+    Sheet(double length, double width, double thickness, int idLocation, int idType) {
         this.length = length;
         this.width = width;
         this.thickness = thickness;
@@ -23,30 +25,25 @@ public class Sheet {
         this.idType = idType;
     }
 
-    void insert() throws ClassNotFoundException{
-
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'"+
-                    timestamp+"','"+
-                    length+"','"+
-                    width+"','"+
-                    thickness+"','"+
-                    idLocation+"','"+
-                    idType+"');");
+    void insert() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'" +
+                timestamp + "','" +
+                length + "','" +
+                width + "','" +
+                thickness + "','" +
+                idLocation + "','" +
+                idType + "');");
     }
 
-    void delete(double id) throws ClassNotFoundException{
-            dml.dataManipulation("DELETE FROM sheet WHERE id_sheet='"+id+"';");
+    void delete(double id) {
+        dml.dataManipulation("DELETE FROM sheet WHERE id_sheet='" + id + "';");
     }
 
-    void selectAll()throws ClassNotFoundException{
-
+    void selectAll() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(
-                    "jdbc:mysql://127.0.0.1:3306/management?serverTimezone=Europe/Warsaw",
-                    "root",
-                    "password");
+            Connection conn = DatabaseUtils.sqlConnection();
+
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM sheet");
 
@@ -54,22 +51,22 @@ public class Sheet {
 
             conn.commit();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 int idType = rs.getInt("id_type");
                 int idLocation = rs.getInt("id_location");
                 String type = "";
                 String location = "";
 
                 Statement typeStmt = conn.createStatement();
-                ResultSet typeRs = typeStmt.executeQuery("SELECT type FROM type WHERE id_type='"+idType+"';");
+                ResultSet typeRs = typeStmt.executeQuery("SELECT type FROM type WHERE id_type='" + idType + "';");
 
                 Statement locStmt = conn.createStatement();
-                ResultSet locRs = locStmt.executeQuery("SELECT location FROM location WHERE id_location='"+idLocation+"';");
+                ResultSet locRs = locStmt.executeQuery("SELECT location FROM location WHERE id_location='" + idLocation + "';");
 
-                while (typeRs.next()){
+                while (typeRs.next()) {
                     type = typeRs.getString("type");
                 }
-                while (locRs.next()){
+                while (locRs.next()) {
                     location = locRs.getString("location");
                 }
 
