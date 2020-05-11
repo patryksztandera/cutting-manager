@@ -13,17 +13,17 @@
            <menus>
              <Menu mnemonicParsing="false" text="%file">
                <items>
-                 <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="%close" />
+                 <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="%file.close" />
                </items>
              </Menu>
              <Menu mnemonicParsing="false" text="%edit">
                <items>
-                 <MenuItem mnemonicParsing="false" text="%delete" />
+                 <MenuItem mnemonicParsing="false" text="%edit.delete" />
                </items>
              </Menu>
              <Menu mnemonicParsing="false" text="%help">
                <items>
-                 <MenuItem mnemonicParsing="false" onAction="#aboutApplication" text="%about" />
+                 <MenuItem mnemonicParsing="false" onAction="#aboutApplication" text="%help.about" />
                </items>
              </Menu>
            </menus>

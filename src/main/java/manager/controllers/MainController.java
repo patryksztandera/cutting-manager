@@ -5,10 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
+import manager.utils.DialogsUtils;
 import manager.utils.FxmlUtils;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController {
@@ -30,12 +33,15 @@ public class MainController {
         borderPaneMain.setCenter(parent);
     }
 
-    public void closeApplication(ActionEvent event) {
-        Platform.exit();
-        System.exit(0);
+    public void closeApplication() {
+        Optional<ButtonType> buttonType = DialogsUtils.exitConfirmation();
+        if(buttonType.get() == ButtonType.OK) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
-    public void aboutApplication(ActionEvent event) {
-
+    public void aboutApplication() {
+        DialogsUtils.aboutApplication();
     }
 }
