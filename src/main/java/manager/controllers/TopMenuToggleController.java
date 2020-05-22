@@ -2,23 +2,25 @@ package manager.controllers;
 
 import javafx.fxml.FXML;
 
+import java.io.IOException;
+
 public class TopMenuToggleController {
 
     @FXML
     private MainController mainController;
 
     @FXML
-    public void openSheet() {
+    public void openSheet() throws IOException{
         mainController.setCenterBorderPane("/fxml/Sheet.fxml");
     }
 
     @FXML
-    public void openType() {
+    public void openType() throws IOException{
         mainController.setCenterBorderPane("/fxml/Type.fxml");
     }
 
     @FXML
-    public void openLocation() {
+    public void openLocation()throws IOException {
         mainController.setCenterBorderPane("/fxml/Location.fxml");
     }
 

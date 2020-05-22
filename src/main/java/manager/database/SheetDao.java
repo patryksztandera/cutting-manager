@@ -1,23 +1,22 @@
-package manager;
+package manager.database;
 
-import manager.database.DML;
 import manager.utils.DatabaseUtils;
 
 import java.sql.*;
 
-public class Sheet {
+public class SheetDao {
 
-    private DML dml = new DML();
+    private Dao dml = new Dao();
     private double length;
     private double width;
     private double thickness;
     private int idLocation;
     private int idType;
 
-    Sheet() {
+    SheetDao() {
     }
 
-    Sheet(double length, double width, double thickness, int idLocation, int idType) {
+    SheetDao(double length, double width, double thickness, int idLocation, int idType) {
         this.length = length;
         this.width = width;
         this.thickness = thickness;

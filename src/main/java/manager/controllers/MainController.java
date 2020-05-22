@@ -1,18 +1,14 @@
 package manager.controllers;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import manager.utils.DialogsUtils;
 import manager.utils.FxmlUtils;
 
-import java.io.IOException;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 public class MainController {
 

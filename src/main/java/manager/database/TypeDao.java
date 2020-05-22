@@ -1,13 +1,12 @@
-package manager;
+package manager.database;
 
-import manager.database.DML;
 import manager.utils.DatabaseUtils;
 
 import java.sql.*;
 
-public class Type {
+public class TypeDao {
 
-    private DML dml = new DML();
+    private Dao dml = new Dao();
 
     void insertTypeOnly(String type) throws ClassNotFoundException {
         dml.dataManipulation("INSERT INTO type VALUES (NULL,'" + type + "',NULL);");

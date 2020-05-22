@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DML {
+public class Dao {
 
     public void dataManipulation(String sqlStatement) {
         try {
