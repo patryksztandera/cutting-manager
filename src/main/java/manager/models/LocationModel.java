@@ -1,4 +1,4 @@
-package manager.model;
+package manager.models;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

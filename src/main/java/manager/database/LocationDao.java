@@ -2,7 +2,7 @@ package manager.database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import manager.model.LocationModel;
+import manager.models.LocationModel;
 import manager.utils.DatabaseUtils;
 
 import java.sql.Connection;
@@ -13,7 +13,6 @@ import java.sql.Statement;
 public class LocationDao {
 
     private Dao dml = new Dao();
-
 
     private ObservableList<LocationModel> locationModelObservableList = FXCollections.observableArrayList();
 

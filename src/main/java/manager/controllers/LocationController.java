@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import manager.database.LocationDao;
-import manager.model.LocationModel;
+import manager.models.LocationModel;
 
 public class LocationController {
 
@@ -12,14 +12,14 @@ public class LocationController {
     private TableView<LocationModel> locationTable;
 
     @FXML
-    private TableColumn<LocationModel,Number> idColumn;
+    private TableColumn<LocationModel, Number> idColumn;
 
     @FXML
-    private TableColumn<LocationModel,String> locationColumn;
+    private TableColumn<LocationModel, String> locationColumn;
 
     private LocationDao locationDao;
 
-    public void initialize(){
+    public void initialize() {
         this.locationDao = new LocationDao();
         locationDao.selectAll();
         bindingsTableView();
