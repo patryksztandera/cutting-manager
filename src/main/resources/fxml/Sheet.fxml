@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label text="sheet" />
-   </children>
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="manager.controllers.SheetController">
+    <children>
+        <TableView fx:id="sheetTable" prefHeight="400.0" prefWidth="400.0">
+            <columns>
+                <TableColumn fx:id="idSheetColumn" prefWidth="75.0" text="%id"/>
+                <TableColumn fx:id="timeColumn" prefWidth="75.0" text="%sheet.time"/>
+                <TableColumn fx:id="lengthColumn" prefWidth="75.0" text="%sheet.length"/>
+                <TableColumn fx:id="widthColumn" prefWidth="75.0" text="%sheet.width"/>
+                <TableColumn fx:id="thicknessColumn" prefWidth="75.0" text="%sheet.thickness"/>
+            </columns>
+        </TableView>
+    </children>
 </HBox>

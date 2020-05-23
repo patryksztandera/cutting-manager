@@ -1,5 +1,6 @@
 package manager.database;
 
+import manager.models.SheetModel;
 import manager.utils.DatabaseUtils;
 
 import java.sql.*;
@@ -69,13 +70,15 @@ public class SheetDao {
                     location = locRs.getString("location");
                 }
 
-                System.out.println(rs.getDouble("id_sheet")
-                        + " : " + rs.getTimestamp("time")
-                        + " : " + rs.getDouble("length")
-                        + " , " + rs.getDouble("width")
-                        + " , " + rs.getDouble("thickness")
-                        + " : " + type
-                        + " : " + location);
+                SheetModel sheetModel = new SheetModel();
+                sheetModel.setIdSheet(rs.getInt("id_sheet"));
+                String time = "" + rs.getTimestamp("time");
+                sheetModel.setTime(time);
+                sheetModel.setLength(rs.getDouble("length"));
+                sheetModel.setWidth(rs.getDouble("width"));
+                sheetModel.setThickness(rs.getDouble("thickness"));
+                      /*  + " : " + type
+                        + " : " + location);*/
             }
 
             conn.close();
