@@ -1,5 +1,7 @@
 package manager.database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import manager.models.SheetModel;
 import manager.utils.DatabaseUtils;
 
@@ -8,24 +10,10 @@ import java.sql.*;
 public class SheetDao {
 
     private Dao dml = new Dao();
-    private double length;
-    private double width;
-    private double thickness;
-    private int idLocation;
-    private int idType;
 
-    SheetDao() {
-    }
+    private ObservableList<SheetModel> sheetModelObservableList = FXCollections.observableArrayList();
 
-    SheetDao(double length, double width, double thickness, int idLocation, int idType) {
-        this.length = length;
-        this.width = width;
-        this.thickness = thickness;
-        this.idLocation = idLocation;
-        this.idType = idType;
-    }
-
-    void insert() {
+    public void insert(double length, double width, double thickness, int idLocation, int idType) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'" +
                 timestamp + "','" +
@@ -36,11 +24,12 @@ public class SheetDao {
                 idType + "');");
     }
 
-    void delete(double id) {
+    public void delete(double id) {
         dml.dataManipulation("DELETE FROM sheet WHERE id_sheet='" + id + "';");
     }
 
-    void selectAll() {
+
+    public void selectAll() {
         try {
             Connection conn = DatabaseUtils.sqlConnection();
 
@@ -77,13 +66,18 @@ public class SheetDao {
                 sheetModel.setLength(rs.getDouble("length"));
                 sheetModel.setWidth(rs.getDouble("width"));
                 sheetModel.setThickness(rs.getDouble("thickness"));
-                      /*  + " : " + type
-                        + " : " + location);*/
+                sheetModel.setType(type);
+                sheetModel.setLocation(location);
+                this.sheetModelObservableList.add(sheetModel);
             }
 
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ObservableList<SheetModel> getSheetModelObservableList() {
+        return sheetModelObservableList;
     }
 }

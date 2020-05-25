@@ -4,17 +4,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="manager.controllers.SheetController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.controllers.SheetController">
     <children>
-        <TableView fx:id="sheetTable" prefHeight="400.0" prefWidth="400.0">
+        <TableView fx:id="sheetTable" prefHeight="400.0" prefWidth="650.0">
             <columns>
-                <TableColumn fx:id="idSheetColumn" prefWidth="75.0" text="%id"/>
-                <TableColumn fx:id="timeColumn" prefWidth="75.0" text="%sheet.time"/>
-                <TableColumn fx:id="lengthColumn" prefWidth="75.0" text="%sheet.length"/>
-                <TableColumn fx:id="widthColumn" prefWidth="75.0" text="%sheet.width"/>
-                <TableColumn fx:id="thicknessColumn" prefWidth="75.0" text="%sheet.thickness"/>
+                <TableColumn fx:id="idSheetColumn" prefWidth="35.0" text="%id" />
+                <TableColumn fx:id="timeColumn" prefWidth="130.0" text="%sheet.time" />
+                <TableColumn fx:id="lengthColumn" prefWidth="75.0" text="%sheet.length" />
+                <TableColumn fx:id="widthColumn" prefWidth="75.0" text="%sheet.width" />
+                <TableColumn fx:id="thicknessColumn" prefWidth="75.0" text="%sheet.thickness" />
+            <TableColumn fx:id="typeSheetColumn" prefWidth="100.0" text="%sheet.type" />
+            <TableColumn fx:id="locationSheetColumn" prefWidth="160.0" text="%sheet.location" />
             </columns>
         </TableView>
     </children>

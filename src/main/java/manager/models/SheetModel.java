@@ -9,6 +9,8 @@ public class SheetModel {
     public DoubleProperty length = new SimpleDoubleProperty();
     public DoubleProperty width = new SimpleDoubleProperty();
     public DoubleProperty thickness = new SimpleDoubleProperty();
+    public StringProperty type = new SimpleStringProperty();
+    public StringProperty location = new SimpleStringProperty();
 
     public int getIdSheet() {
         return idSheet.get();
@@ -69,4 +71,30 @@ public class SheetModel {
     public void setThickness(double thickness) {
         this.thickness.set(thickness);
     }
+
+
+    public String getType() {
+        return type.get();
+    }
+
+    public StringProperty typeProperty() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type.set(type);
+    }
+
+    public String getLocation() {
+        return location.get();
+    }
+
+    public StringProperty locationProperty() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location.set(location);
+    }
+
 }
