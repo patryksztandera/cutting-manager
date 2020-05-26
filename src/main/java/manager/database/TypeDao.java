@@ -1,5 +1,7 @@
 package manager.database;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import manager.models.TypeModel;
@@ -15,6 +17,7 @@ public class TypeDao {
     private Dao dao = new Dao();
 
     private ObservableList<TypeModel> typeModelObservableList = FXCollections.observableArrayList();
+    private ObjectProperty<TypeModel> typeModelObjectProperty = new SimpleObjectProperty<>(new TypeModel());
 
     public void insertTypeOnly(String type) throws ClassNotFoundException {
         dao.dataManipulation("INSERT INTO type VALUES (NULL,'" + type + "',NULL);");
@@ -60,5 +63,18 @@ public class TypeDao {
     public void setTypeModelObservableList(ObservableList<TypeModel> typeModelObservableList) {
         this.typeModelObservableList = typeModelObservableList;
     }
+
+    public TypeModel getTypeModelObjectProperty() {
+        return typeModelObjectProperty.get();
+    }
+
+    public ObjectProperty<TypeModel> typeModelProperty() {
+        return typeModelObjectProperty;
+    }
+
+    public void setTypeModelObjectProperty(TypeModel typeModelObjectProperty) {
+        this.typeModelObjectProperty.set(typeModelObjectProperty);
+    }
+
 }
 

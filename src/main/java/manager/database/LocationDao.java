@@ -1,5 +1,7 @@
 package manager.database;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import manager.models.LocationModel;
@@ -15,6 +17,7 @@ public class LocationDao {
     private Dao dml = new Dao();
 
     private ObservableList<LocationModel> locationModelObservableList = FXCollections.observableArrayList();
+    private ObjectProperty<LocationModel> locationModelObjectProperty = new SimpleObjectProperty<>(new LocationModel());
 
     public void insert(String location) {
         dml.dataManipulation("INSERT INTO location VALUES (NULL,'" + location + "');");
@@ -55,5 +58,18 @@ public class LocationDao {
     public void setLocationModelObservableList(ObservableList<LocationModel> locationModelObservableList) {
         this.locationModelObservableList = locationModelObservableList;
     }
+
+    public LocationModel getLocationModelObjectProperty() {
+        return locationModelObjectProperty.get();
+    }
+
+    public ObjectProperty<LocationModel> locationModelProperty() {
+        return locationModelObjectProperty;
+    }
+
+    public void setLocationModelObjectProperty(LocationModel locationModelObjectProperty) {
+        this.locationModelObjectProperty.set(locationModelObjectProperty);
+    }
+
 }
 

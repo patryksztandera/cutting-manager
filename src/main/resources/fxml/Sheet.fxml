@@ -38,16 +38,16 @@
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <Label text="%sheet.type" />
-                  <ComboBox fx:id="typeComboBox" prefWidth="150.0" />
+                  <ComboBox fx:id="typeComboBox" onAction="#onActionTypeComboBox" prefWidth="150.0" />
                </children>
             </VBox>
             <VBox prefHeight="50.0" prefWidth="175.0">
                <children>
                   <Label text="%sheet.location" />
-                  <ComboBox fx:id="locationComboBox" prefHeight="25.0" prefWidth="175.0" />
+                  <ComboBox fx:id="locationComboBox" onAction="#onActionLocationComboBox" prefHeight="25.0" prefWidth="175.0" />
                </children>
             </VBox>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addSheetButton" prefHeight="42.0" prefWidth="94.0" text="%add" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onActionAddButton" prefHeight="42.0" prefWidth="94.0" text="%add" />
          </children>
          <opaqueInsets>
             <Insets />

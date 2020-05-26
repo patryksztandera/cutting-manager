@@ -81,7 +81,9 @@ public class SheetController {
 
         this.addButton.disableProperty().bind(this.lengthTextField.textProperty().isEqualTo("0")
                 .or(this.widthTextField.textProperty().isEqualTo("0"))
-                .or(this.thicknessTextField.textProperty().isEqualTo("0")));
+                .or(this.thicknessTextField.textProperty().isEqualTo("0"))
+                .or(this.locationComboBox.valueProperty().isNull())
+                .or(this.typeComboBox.valueProperty().isNull()));
     }
 
     private void bindingsTableView() {
@@ -95,7 +97,15 @@ public class SheetController {
         this.locationSheetColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
     }
 
-    public void addSheetButton() {
+    public void onActionTypeComboBox(){
+        this.sheetDao.setTypeModelObjectProperty(this.typeComboBox.getSelectionModel().getSelectedItem());
+    }
+
+    public void onActionLocationComboBox(){
+        this.sheetDao.setLocationModelObjectProperty(this.locationComboBox.getSelectionModel().getSelectedItem());
+    }
+
+    public void onActionAddButton() {
         sheetDao.insertModel();
         initialize();
     }

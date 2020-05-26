@@ -4,7 +4,9 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import manager.models.LocationModel;
 import manager.models.SheetModel;
+import manager.models.TypeModel;
 import manager.utils.DatabaseUtils;
 
 import java.sql.*;
@@ -15,6 +17,8 @@ public class SheetDao {
 
     private ObservableList<SheetModel> sheetModelObservableList = FXCollections.observableArrayList();
     private ObjectProperty<SheetModel> sheetModelObjectProperty = new SimpleObjectProperty<>(new SheetModel());
+    private ObjectProperty<LocationModel> locationModelObjectProperty = new SimpleObjectProperty<>(new LocationModel());
+    private ObjectProperty<TypeModel> typeModelObjectProperty = new SimpleObjectProperty<>(new TypeModel());
 
     public void insert(double length, double width, double thickness, int idLocation, int idType) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -30,16 +34,13 @@ public class SheetDao {
     public void insertModel() {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        int idLocation = 1;
-        int idType = 1;
-
         dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'" +
                 timestamp + "','" +
                 this.sheetModelObjectProperty.get().lengthProperty().getValue() + "','" +
                 this.sheetModelObjectProperty.get().widthProperty().getValue() + "','" +
                 this.sheetModelObjectProperty.get().thicknessProperty().getValue() + "','" +
-                idLocation + "','" +
-                idType + "');");
+                this.locationModelObjectProperty.get().idLocationProperty().getValue() + "','" +
+                this.typeModelObjectProperty.get().idTypeProperty().getValue() + "');");
     }
 
     public void delete(double id) {
@@ -110,4 +111,29 @@ public class SheetDao {
     public void setSheetModelObjectProperty(SheetModel sheetModelObjectProperty) {
         this.sheetModelObjectProperty.set(sheetModelObjectProperty);
     }
+
+    public LocationModel getLocationModelObjectProperty() {
+        return locationModelObjectProperty.get();
+    }
+
+    public ObjectProperty<LocationModel> locationModelProperty() {
+        return locationModelObjectProperty;
+    }
+
+    public void setLocationModelObjectProperty(LocationModel locationModelObjectProperty) {
+        this.locationModelObjectProperty.set(locationModelObjectProperty);
+    }
+
+    public TypeModel getTypeModelObjectProperty() {
+        return typeModelObjectProperty.get();
+    }
+
+    public ObjectProperty<TypeModel> typeModelProperty() {
+        return typeModelObjectProperty;
+    }
+
+    public void setTypeModelObjectProperty(TypeModel typeModelObjectProperty) {
+        this.typeModelObjectProperty.set(typeModelObjectProperty);
+    }
+
 }
