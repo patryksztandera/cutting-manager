@@ -5,7 +5,10 @@ import javafx.collections.ObservableList;
 import manager.models.TypeModel;
 import manager.utils.DatabaseUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class TypeDao {
 
@@ -49,7 +52,6 @@ public class TypeDao {
             e.printStackTrace();
         }
     }
-
 
     public ObservableList<TypeModel> getTypeModelObservableList() {
         return typeModelObservableList;

@@ -1,5 +1,7 @@
 package manager.database;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import manager.models.SheetModel;
@@ -12,14 +14,30 @@ public class SheetDao {
     private Dao dml = new Dao();
 
     private ObservableList<SheetModel> sheetModelObservableList = FXCollections.observableArrayList();
+    private ObjectProperty<SheetModel> sheetModelObjectProperty = new SimpleObjectProperty<>(new SheetModel());
 
     public void insert(double length, double width, double thickness, int idLocation, int idType) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'" +
                 timestamp + "','" +
-                length + "','" +
+                length+ "','" +
                 width + "','" +
                 thickness + "','" +
+                idLocation + "','" +
+                idType + "');");
+    }
+
+    public void insertModel() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        int idLocation = 1;
+        int idType = 1;
+
+        dml.dataManipulation("INSERT INTO sheet VALUES (NULL,'" +
+                timestamp + "','" +
+                this.sheetModelObjectProperty.get().lengthProperty().getValue() + "','" +
+                this.sheetModelObjectProperty.get().widthProperty().getValue() + "','" +
+                this.sheetModelObjectProperty.get().thicknessProperty().getValue() + "','" +
                 idLocation + "','" +
                 idType + "');");
     }
@@ -79,5 +97,17 @@ public class SheetDao {
 
     public ObservableList<SheetModel> getSheetModelObservableList() {
         return sheetModelObservableList;
+    }
+
+    public SheetModel getSheetModelObjectProperty() {
+        return sheetModelObjectProperty.get();
+    }
+
+    public ObjectProperty<SheetModel> sheetModelProperty() {
+        return sheetModelObjectProperty;
+    }
+
+    public void setSheetModelObjectProperty(SheetModel sheetModelObjectProperty) {
+        this.sheetModelObjectProperty.set(sheetModelObjectProperty);
     }
 }

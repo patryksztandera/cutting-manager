@@ -19,8 +19,7 @@ public class MainController {
     private TopMenuToggleController topMenuController;
 
     @FXML
-    private void initialize(){
-
+    private void initialize() {
         topMenuController.setMainController(this);
     }
 
@@ -31,7 +30,7 @@ public class MainController {
 
     public void closeApplication() {
         Optional<ButtonType> buttonType = DialogsUtils.exitConfirmation();
-        if(buttonType.get() == ButtonType.OK) {
+        if (buttonType.get() == ButtonType.OK) {
             Platform.exit();
             System.exit(0);
         }

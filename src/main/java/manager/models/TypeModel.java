@@ -47,4 +47,9 @@ public class TypeModel {
     public void setInfo(String info) {
         this.info.set(info);
     }
+
+    @Override
+    public String toString() {
+        return type.getValue() ;
+    }
 }

@@ -33,4 +33,9 @@ public class LocationModel {
     public StringProperty locationProperty() {
         return location;
     }
+
+    @Override
+    public String toString() {
+        return location.getValue() ;
+    }
 }
