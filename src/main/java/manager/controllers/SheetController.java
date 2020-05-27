@@ -80,8 +80,11 @@ public class SheetController {
         this.sheetDao.sheetModelProperty().get().thicknessProperty().bind(convert(this.thicknessTextField));
 
         this.addButton.disableProperty().bind(this.lengthTextField.textProperty().isEqualTo("0")
+                .or(this.lengthTextField.textProperty().isEmpty())
                 .or(this.widthTextField.textProperty().isEqualTo("0"))
+                .or(this.widthTextField.textProperty().isEmpty())
                 .or(this.thicknessTextField.textProperty().isEqualTo("0"))
+                .or(this.thicknessTextField.textProperty().isEmpty())
                 .or(this.locationComboBox.valueProperty().isNull())
                 .or(this.typeComboBox.valueProperty().isNull()));
     }
