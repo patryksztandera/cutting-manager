@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 
-public class TopMenuToggleController {
+public class LeftMenuToggleController {
 
     @FXML
     private MainController mainController;

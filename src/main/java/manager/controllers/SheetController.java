@@ -5,6 +5,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import manager.database.LocationDao;
 import manager.database.SheetDao;
@@ -12,6 +13,9 @@ import manager.database.TypeDao;
 import manager.models.LocationModel;
 import manager.models.SheetModel;
 import manager.models.TypeModel;
+
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 public class SheetController {
 
@@ -73,6 +77,10 @@ public class SheetController {
     }
 
     private void bindingsAdd() {
+        this.lengthTextField.setTextFormatter(formatTextFieldToDouble());
+        this.widthTextField.setTextFormatter(formatTextFieldToDouble());
+        this.thicknessTextField.setTextFormatter(formatTextFieldToDouble());
+
         this.typeComboBox.setItems(this.typeDao.getTypeModelObservableList());
         this.locationComboBox.setItems(this.locationDao.getLocationModelObservableList());
         this.sheetDao.sheetModelProperty().get().lengthProperty().bind(convert(this.lengthTextField));
@@ -111,6 +119,38 @@ public class SheetController {
     public void onActionAddButton() {
         sheetDao.insertModel();
         initialize();
+    }
+
+    public TextFormatter<Double> formatTextFieldToDouble(){
+        Pattern validEditingState = Pattern.compile("-?(([1-9][0-9]*)|0)?(\\.[0-9]*)?");
+
+        UnaryOperator<TextFormatter.Change> filter = c -> {
+            String text = c.getControlNewText();
+            if (validEditingState.matcher(text).matches()) {
+                return c ;
+            } else {
+                return null ;
+            }
+        };
+
+        StringConverter<Double> converter = new StringConverter<Double>()  {
+
+            @Override
+            public Double fromString(String s) {
+                if (s.isEmpty() || s.equals(".")) {
+                    return 0.0 ;
+                } else {
+                    return Double.valueOf(s);
+                }
+            }
+
+
+            @Override
+            public String toString(Double d) {
+                return d.toString();
+            }
+        };
+        return new TextFormatter<>(converter, 0.0, filter);
     }
 
     public DoubleProperty convert(TextField textField) {

@@ -16,11 +16,11 @@ public class MainController {
     private BorderPane borderPaneMain;
 
     @FXML
-    private TopMenuToggleController topMenuController;
+    private LeftMenuToggleController leftMenuController;
 
     @FXML
     private void initialize() {
-        topMenuController.setMainController(this);
+        leftMenuController.setMainController(this);
     }
 
     public void setCenterBorderPane(String fxmlPath) {

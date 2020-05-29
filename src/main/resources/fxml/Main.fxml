@@ -33,7 +33,7 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <fx:include fx:id="topMenu" source="TopMenu.fxml" />
+            <fx:include fx:id="leftMenu" source="LeftMenu.fxml" />
          </children>
       </VBox>
    </left>
