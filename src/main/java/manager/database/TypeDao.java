@@ -23,8 +23,10 @@ public class TypeDao {
         dao.dataManipulation("INSERT INTO type VALUES (NULL,'" + type + "',NULL);");
     }
 
-    public void insert(String type, String information) throws ClassNotFoundException {
-        dao.dataManipulation("INSERT INTO type VALUES (NULL,'" + type + "','" + information + "');");
+    public void insert() {
+        dao.dataManipulation("INSERT INTO type VALUES (NULL,'" +
+                this.typeModelObjectProperty.get().typeProperty().getValue() + "','" +
+                this.typeModelObjectProperty.get().infoProperty().getValue() + "');");
     }
 
     public void delete(double id) throws ClassNotFoundException {

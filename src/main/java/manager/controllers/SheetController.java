@@ -134,7 +134,6 @@ public class SheetController {
         };
 
         StringConverter<Double> converter = new StringConverter<Double>()  {
-
             @Override
             public Double fromString(String s) {
                 if (s.isEmpty() || s.equals(".")) {
@@ -143,8 +142,6 @@ public class SheetController {
                     return Double.valueOf(s);
                 }
             }
-
-
             @Override
             public String toString(Double d) {
                 return d.toString();
