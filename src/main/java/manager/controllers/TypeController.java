@@ -20,13 +20,13 @@ public class TypeController {
     private TableView<TypeModel> typeTable;
 
     @FXML
-    private TableColumn<TypeModel,Number> idTypeColumn;
+    private TableColumn<TypeModel, Number> idTypeColumn;
 
     @FXML
-    private TableColumn<TypeModel,String> typeColumn;
+    private TableColumn<TypeModel, String> typeColumn;
 
     @FXML
-    private TableColumn<TypeModel,String> infoColumn;
+    private TableColumn<TypeModel, String> infoColumn;
 
     private TypeDao typeDao;
 

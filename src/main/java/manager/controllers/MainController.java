@@ -19,8 +19,9 @@ public class MainController {
     private LeftMenuToggleController leftMenuController;
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         leftMenuController.setMainController(this);
+        setCenterBorderPane("/fxml/DefaultScreen.fxml");
     }
 
     public void setCenterBorderPane(String fxmlPath) {
