@@ -18,10 +18,7 @@ public class TypeDao {
 
     private ObservableList<TypeModel> typeModelObservableList = FXCollections.observableArrayList();
     private ObjectProperty<TypeModel> typeModelObjectProperty = new SimpleObjectProperty<>(new TypeModel());
-
-    public void insertTypeOnly(String type) throws ClassNotFoundException {
-        dao.dataManipulation("INSERT INTO type VALUES (NULL,'" + type + "',NULL);");
-    }
+    private ObjectProperty<TypeModel> editableObjectProperty = new SimpleObjectProperty<>(new TypeModel());
 
     public void insert() {
         dao.dataManipulation("INSERT INTO type VALUES (NULL,'" +
@@ -29,8 +26,9 @@ public class TypeDao {
                 this.typeModelObjectProperty.get().infoProperty().getValue() + "');");
     }
 
-    public void delete(double id) throws ClassNotFoundException {
-        dao.dataManipulation("DELETE FROM type WHERE id_type='" + id + "';");
+    public void delete() throws ClassNotFoundException {
+        dao.dataManipulation("DELETE FROM type WHERE id_type='" +
+                this.editableObjectProperty.get().idTypeProperty().getValue() + "';");
     }
 
     public void selectAll() {
@@ -76,6 +74,18 @@ public class TypeDao {
 
     public void setTypeModelObjectProperty(TypeModel typeModelObjectProperty) {
         this.typeModelObjectProperty.set(typeModelObjectProperty);
+    }
+
+    public TypeModel getEditableObjectProperty() {
+        return editableObjectProperty.get();
+    }
+
+    public ObjectProperty<TypeModel> editableObjectPropertyProperty() {
+        return editableObjectProperty;
+    }
+
+    public void setEditableObjectProperty(TypeModel editableObjectProperty) {
+        this.editableObjectProperty.set(editableObjectProperty);
     }
 
 }

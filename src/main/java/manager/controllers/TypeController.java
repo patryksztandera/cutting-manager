@@ -17,7 +17,7 @@ public class TypeController {
     private Button addTypeButton;
 
     @FXML
-    private TableView<TypeModel> typeTable;
+    public TableView<TypeModel> typeTable;
 
     @FXML
     private TableColumn<TypeModel, Number> idTypeColumn;
@@ -28,13 +28,23 @@ public class TypeController {
     @FXML
     private TableColumn<TypeModel, String> infoColumn;
 
-    private TypeDao typeDao;
+    @FXML
+    private MenuItem deleteContextMenu;
+
+    public MainController mainController;
+
+    public TypeDao typeDao;
 
     public void initialize() {
         this.typeDao = new TypeDao();
         typeDao.selectAll();
         bindingsAdd();
         bindingsTableView();
+
+        this.typeTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    this.typeDao.setEditableObjectProperty(newValue);
+                });
     }
 
     private void bindingsAdd() {
@@ -55,6 +65,11 @@ public class TypeController {
         typeDao.insert();
         this.typeTextField.clear();
         this.infoTextArea.clear();
+        initialize();
+    }
+
+    public void deleteContextMenuOnAction() throws ClassNotFoundException {
+        typeDao.delete();
         initialize();
     }
 }
