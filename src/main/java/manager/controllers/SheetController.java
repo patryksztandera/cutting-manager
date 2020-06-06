@@ -61,6 +61,9 @@ public class SheetController {
     @FXML
     private TableColumn<SheetModel, String> locationSheetColumn;
 
+    @FXML
+    private ComboBox<Double> thicknessSheetComboBox;
+
     private SheetDao sheetDao;
     private TypeDao typeDao;
     private LocationDao locationDao;
@@ -74,6 +77,9 @@ public class SheetController {
         locationDao.selectAll();
         bindingsAdd();
         bindingsTableView();
+
+        this.thicknessSheetComboBox.setItems(this.sheetDao.getThicknessObservableList().sorted());
+        this.sheetDao.thicknessProperty().bind(this.thicknessSheetComboBox.valueProperty());
     }
 
     private void bindingsAdd() {
@@ -83,6 +89,7 @@ public class SheetController {
 
         this.typeComboBox.setItems(this.typeDao.getTypeModelObservableList());
         this.locationComboBox.setItems(this.locationDao.getLocationModelObservableList());
+
         this.sheetDao.sheetModelProperty().get().lengthProperty().bind(convert(this.lengthTextField));
         this.sheetDao.sheetModelProperty().get().widthProperty().bind(convert(this.widthTextField));
         this.sheetDao.sheetModelProperty().get().thicknessProperty().bind(convert(this.thicknessTextField));
@@ -108,17 +115,21 @@ public class SheetController {
         this.locationSheetColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
     }
 
-    public void onActionTypeComboBox(){
+    public void onActionTypeComboBox() {
         this.sheetDao.setTypeModelObjectProperty(this.typeComboBox.getSelectionModel().getSelectedItem());
     }
 
-    public void onActionLocationComboBox(){
+    public void onActionLocationComboBox() {
         this.sheetDao.setLocationModelObjectProperty(this.locationComboBox.getSelectionModel().getSelectedItem());
     }
 
     public void onActionAddButton() {
         sheetDao.insertModel();
         initialize();
+    }
+
+    public void onActionThicknessSheetComboBox() {
+        this.sheetTable.setItems(this.sheetDao.filter());
     }
 
     public TextFormatter<Double> formatTextFieldToDouble(){

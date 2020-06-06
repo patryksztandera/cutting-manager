@@ -62,7 +62,7 @@
                   <TableColumn fx:id="widthColumn" prefWidth="75.0" text="%sheet.width" />
                   <TableColumn fx:id="thicknessColumn" prefWidth="125.0" text="%sheet.thickness">
                      <graphic>
-                        <ComboBox prefHeight="25.0" prefWidth="35.0" />
+                        <ComboBox fx:id="thicknessSheetComboBox" onAction="#onActionThicknessSheetComboBox" prefHeight="25.0" prefWidth="60.0" />
                      </graphic>
                   </TableColumn>
                   <TableColumn fx:id="typeSheetColumn" prefWidth="100.0" text="%sheet.type" />

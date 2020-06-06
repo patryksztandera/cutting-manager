@@ -4,21 +4,30 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import manager.models.LocationModel;
 import manager.models.SheetModel;
 import manager.models.TypeModel;
 import manager.utils.DatabaseUtils;
 
 import java.sql.*;
+import java.util.HashSet;
+import java.util.function.Predicate;
 
 public class SheetDao {
 
     private Dao dml = new Dao();
 
     private ObservableList<SheetModel> sheetModelObservableList = FXCollections.observableArrayList();
+    private ObservableList<Double> thicknessObservableList = FXCollections.observableArrayList();
+
+    private HashSet<Double> thicknessHashSet = new HashSet<>();
+
     private ObjectProperty<SheetModel> sheetModelObjectProperty = new SimpleObjectProperty<>(new SheetModel());
     private ObjectProperty<LocationModel> locationModelObjectProperty = new SimpleObjectProperty<>(new LocationModel());
     private ObjectProperty<TypeModel> typeModelObjectProperty = new SimpleObjectProperty<>(new TypeModel());
+
+    private ObjectProperty<Double> thicknessObjectProperty = new SimpleObjectProperty<>();
 
     public void insert(double length, double width, double thickness, int idLocation, int idType) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -84,16 +93,30 @@ public class SheetDao {
                 sheetModel.setTime(time);
                 sheetModel.setLength(rs.getDouble("length"));
                 sheetModel.setWidth(rs.getDouble("width"));
-                sheetModel.setThickness(rs.getDouble("thickness"));
+                double thickness = rs.getDouble("thickness");
+                sheetModel.setThickness(thickness);
                 sheetModel.setType(type);
                 sheetModel.setLocation(location);
                 this.sheetModelObservableList.add(sheetModel);
+                this.thicknessHashSet.add(thickness);
             }
+
+            this.thicknessObservableList.addAll(this.thicknessHashSet);
 
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Predicate<SheetModel> thicknessPredicate() {
+        return sheetModel -> sheetModel.getThickness() == thicknessObjectProperty.get();
+    }
+
+    public FilteredList<SheetModel> filter (){
+        FilteredList<SheetModel> filteredList = new FilteredList<>(this.sheetModelObservableList, p -> true);
+        filteredList.setPredicate(thicknessPredicate());
+        return filteredList;
     }
 
     public ObservableList<SheetModel> getSheetModelObservableList() {
@@ -136,4 +159,23 @@ public class SheetDao {
         this.typeModelObjectProperty.set(typeModelObjectProperty);
     }
 
+    public ObservableList<Double> getThicknessObservableList() {
+        return thicknessObservableList;
+    }
+
+    public void setThicknessObservableList(ObservableList<Double> thicknessObservableList) {
+        this.thicknessObservableList = thicknessObservableList;
+    }
+
+    public Double getThicknessObjectProperty() {
+        return thicknessObjectProperty.get();
+    }
+
+    public ObjectProperty<Double> thicknessProperty() {
+        return thicknessObjectProperty;
+    }
+
+    public void setThicknessObjectProperty(Double thicknessObjectProperty) {
+        this.thicknessObjectProperty.set(thicknessObjectProperty);
+    }
 }
