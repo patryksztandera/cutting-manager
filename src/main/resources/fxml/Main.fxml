@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.controllers.MainController">
+<BorderPane fx:id="borderPaneMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.controllers.MainController">
    <top>
       <VBox prefHeight="35.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <MenuBar>
@@ -16,9 +16,9 @@
                  <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="%file.close" />
                </items>
              </Menu>
-             <Menu mnemonicParsing="false" text="%edit">
+             <Menu fx:id="editMenu" mnemonicParsing="false" text="%edit">
                <items>
-                 <MenuItem mnemonicParsing="false" text="%edit.delete" />
+                 <MenuItem fx:id="deleteMenuItem" mnemonicParsing="false" onAction="#deleteFromMenuItem" text="%edit.delete" />
                </items>
              </Menu>
              <Menu mnemonicParsing="false" text="%help">

@@ -5,22 +5,26 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="leftMenu" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.controllers.LeftMenuToggleController">
+<VBox fx:id="leftMenuVBox" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="manager.controllers.LeftMenuToggleController">
    <children>
-      <ToggleButton fx:id="sheetToggleButton" mnemonicParsing="false" onAction="#openSheet" prefHeight="50.0" prefWidth="100.0" text="%sheet">
+      <ToggleButton fx:id="sheetToggleButton" mnemonicParsing="false" onAction="#openSheet" prefHeight="50.0"
+                    prefWidth="100.0" text="%sheet">
          <toggleGroup>
-            <ToggleGroup fx:id="MenuGroup" />
+            <ToggleGroup fx:id="MenuGroup"/>
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="typeToggleButton" mnemonicParsing="false" onAction="#openType" prefHeight="50.0" prefWidth="100.0" text="%sheet.type" toggleGroup="$MenuGroup">
+      <ToggleButton fx:id="typeToggleButton" mnemonicParsing="false" onAction="#openType" prefHeight="50.0"
+                    prefWidth="100.0" text="%sheet.type" toggleGroup="$MenuGroup">
       </ToggleButton>
-      <ToggleButton fx:id="locationToggleButton" mnemonicParsing="false" onAction="#openLocation" prefHeight="50.0" prefWidth="100.0" text="%sheet.location" toggleGroup="$MenuGroup">
+      <ToggleButton fx:id="locationToggleButton" mnemonicParsing="false" onAction="#openLocation" prefHeight="50.0"
+                    prefWidth="100.0" text="%sheet.location" toggleGroup="$MenuGroup">
       </ToggleButton>
    </children>
    <opaqueInsets>
-      <Insets />
+      <Insets/>
    </opaqueInsets>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
    </padding>
 </VBox>

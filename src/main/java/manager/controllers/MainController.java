@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.BorderPane;
 import manager.utils.DialogsUtils;
 import manager.utils.FxmlUtils;
@@ -17,6 +18,11 @@ public class MainController {
 
     @FXML
     private LeftMenuToggleController leftMenuController;
+
+    @FXML
+    private TypeController typeController;
+
+    public Menu editMenu;
 
     @FXML
     public void initialize() {
@@ -35,6 +41,10 @@ public class MainController {
             Platform.exit();
             System.exit(0);
         }
+    }
+
+    public void deleteFromMenuItem() {
+
     }
 
     public void aboutApplication() {
