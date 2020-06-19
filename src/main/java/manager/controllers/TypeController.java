@@ -28,23 +28,17 @@ public class TypeController {
     @FXML
     private TableColumn<TypeModel, String> infoColumn;
 
-    @FXML
-    private MenuItem deleteContextMenu;
-
-    public MainController mainController;
-
     public TypeDao typeDao;
 
     public void initialize() {
+
         this.typeDao = new TypeDao();
         typeDao.selectAll();
         bindingsAdd();
         bindingsTableView();
 
         this.typeTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> {
-                    this.typeDao.setEditableObjectProperty(newValue);
-                });
+                (observable, oldValue, newValue) -> this.typeDao.setEditableObjectProperty(newValue));
     }
 
     private void bindingsAdd() {

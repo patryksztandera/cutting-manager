@@ -20,6 +20,8 @@ public class TypeDao {
     private ObjectProperty<TypeModel> typeModelObjectProperty = new SimpleObjectProperty<>(new TypeModel());
     private ObjectProperty<TypeModel> editableObjectProperty = new SimpleObjectProperty<>(new TypeModel());
 
+    public TypeModel typeModel = new TypeModel();
+
     public void insert() {
         dao.dataManipulation("INSERT INTO type VALUES (NULL,'" +
                 this.typeModelObjectProperty.get().typeProperty().getValue() + "','" +
@@ -49,6 +51,31 @@ public class TypeDao {
                 typeModel.setType(rs.getString("type"));
                 typeModel.setInfo(rs.getString("information"));
                 this.typeModelObservableList.add(typeModel);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void selectType(int id) {
+
+        try {
+            Connection conn = DatabaseUtils.sqlConnection();
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM type WHERE id_type='"+id+"';");
+
+
+            conn.setAutoCommit(false);
+
+            conn.commit();
+
+            while (rs.next()) {
+
+                typeModel.setIdType(rs.getInt("id_type"));
+                typeModel.setType(rs.getString("type"));
+                typeModel.setInfo(rs.getString("information"));
             }
             conn.close();
         } catch (SQLException e) {

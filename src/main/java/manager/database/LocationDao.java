@@ -19,6 +19,8 @@ public class LocationDao {
     private ObservableList<LocationModel> locationModelObservableList = FXCollections.observableArrayList();
     private ObjectProperty<LocationModel> locationModelObjectProperty = new SimpleObjectProperty<>(new LocationModel());
 
+    public LocationModel locationModel = new LocationModel();
+
     public void insert(String location) {
         dml.dataManipulation("INSERT INTO location VALUES (NULL,'" + location + "');");
     }
@@ -44,6 +46,28 @@ public class LocationDao {
                 locationModel.setIdLocation(rs.getInt("id_location"));
                 locationModel.setLocation(rs.getString("location"));
                 this.locationModelObservableList.add(locationModel);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void selectLocation(int id) {
+
+        try {
+            Connection conn = DatabaseUtils.sqlConnection();
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM location WHERE id_location='" + id +"';");
+
+            conn.setAutoCommit(false);
+
+            conn.commit();
+
+            while (rs.next()) {
+                locationModel.setIdLocation(rs.getInt("id_location"));
+                locationModel.setLocation(rs.getString("location"));
             }
             conn.close();
         } catch (SQLException e) {

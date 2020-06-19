@@ -64,6 +64,9 @@ public class SheetController {
     @FXML
     private ComboBox<Double> thicknessSheetComboBox;
 
+    @FXML
+    private ComboBox<Double> widthSheetComboBox;
+
     private SheetDao sheetDao;
     private TypeDao typeDao;
     private LocationDao locationDao;
@@ -78,6 +81,8 @@ public class SheetController {
         bindingsAdd();
         bindingsTableView();
 
+        this.widthSheetComboBox.setItems(this.sheetDao.getWidthObservableList().sorted());
+        this.sheetDao.widthProperty().bind(this.widthSheetComboBox.valueProperty());
         this.thicknessSheetComboBox.setItems(this.sheetDao.getThicknessObservableList().sorted());
         this.sheetDao.thicknessProperty().bind(this.thicknessSheetComboBox.valueProperty());
     }
@@ -126,6 +131,10 @@ public class SheetController {
     public void onActionAddButton() {
         sheetDao.insertModel();
         initialize();
+    }
+
+    public void onActionWidthSheetComboBox() {
+        this.sheetTable.setItems(this.sheetDao.filter());
     }
 
     public void onActionThicknessSheetComboBox() {

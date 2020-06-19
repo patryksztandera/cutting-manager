@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.controllers.SheetController">
+<VBox prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.controllers.SheetController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
          <children>
@@ -59,7 +59,10 @@
                   <TableColumn fx:id="idSheetColumn" prefWidth="35.0" text="%id" />
                   <TableColumn fx:id="timeColumn" prefWidth="130.0" text="%sheet.time" />
                   <TableColumn fx:id="lengthColumn" prefWidth="75.0" text="%sheet.length" />
-                  <TableColumn fx:id="widthColumn" prefWidth="75.0" text="%sheet.width" />
+                  <TableColumn fx:id="widthColumn" prefWidth="120.0" text="%sheet.width">
+                     <graphic>
+                        <ComboBox fx:id="widthSheetComboBox" onAction="#onActionWidthSheetComboBox" prefHeight="25.0" prefWidth="60.0" />
+                     </graphic></TableColumn>
                   <TableColumn fx:id="thicknessColumn" prefWidth="125.0" text="%sheet.thickness">
                      <graphic>
                         <ComboBox fx:id="thicknessSheetComboBox" onAction="#onActionThicknessSheetComboBox" prefHeight="25.0" prefWidth="60.0" />

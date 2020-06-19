@@ -72,7 +72,6 @@ public class SheetModel {
         this.thickness.set(thickness);
     }
 
-
     public String getType() {
         return type.get();
     }
