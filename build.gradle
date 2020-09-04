@@ -1,29 +1,36 @@
 plugins {
-    id 'java'
-    id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.7'
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id "org.openjfx.javafxplugin" version "0.0.9"
+	id 'java'
 }
 
-group 'projects'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
+group = 'com.cutting'
+version = '0.0.2-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.15'
-    runtime "mysql:mysql-connector-java:8.0.15"
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.security:spring-security-test'
 
+	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'com.h2database:h2'
 }
 
 javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-    version = '11.0.2'
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
+	version = '14.0.2'
 }
 
-mainClassName = 'manager.Main'
+test {
+	useJUnitPlatform()
+}
