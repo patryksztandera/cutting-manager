@@ -1,14 +1,16 @@
 package manager;
 
-import javafx.scene.layout.Pane;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import manager.utils.FxmlUtils;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.sql.*;
-import java.util.*;
+import java.util.Locale;
 
+@SpringBootApplication
 public class Main extends Application {
 
     @Override
@@ -22,9 +24,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) {
 
         launch(args);
+        SpringApplication.run(Main.class, args);
     }
 }
 
