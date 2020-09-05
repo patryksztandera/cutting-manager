@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class LocationFxModel {
-    private StringProperty location = new SimpleStringProperty();
+    private final StringProperty location = new SimpleStringProperty();
 
     public LocationFxModel(String location) {
         this.location.set(location);
@@ -22,12 +22,7 @@ public class LocationFxModel {
         return location.get();
     }
 
-    public void setLocation(String location) {
-        this.location.set(location);
-    }
-
     public StringProperty locationProperty() {
         return location;
     }
-
 }

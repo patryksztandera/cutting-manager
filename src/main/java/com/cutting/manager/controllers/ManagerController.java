@@ -20,7 +20,7 @@ public class ManagerController {
     private Resource locationResource;
     @Value("classpath:/fxml/type.fxml")
     private Resource typeResource;
-    private ApplicationContext applicationContext;
+    private final ApplicationContext applicationContext;
     @FXML
     public BorderPane borderPane;
     @FXML
@@ -32,7 +32,6 @@ public class ManagerController {
 
     @FXML
     public void initialize() {
-
     }
 
     @FXML
@@ -52,7 +51,7 @@ public class ManagerController {
 
     private Parent loadStage(Resource resource) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(resource.getURL());
-        fxmlLoader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+        fxmlLoader.setControllerFactory(applicationContext::getBean);
         return fxmlLoader.load();
     }
 }

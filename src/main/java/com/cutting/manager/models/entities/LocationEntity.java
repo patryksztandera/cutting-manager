@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "location")
 public class LocationEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -27,5 +26,4 @@ public class LocationEntity {
     public String getLocation() {
         return location;
     }
-
 }

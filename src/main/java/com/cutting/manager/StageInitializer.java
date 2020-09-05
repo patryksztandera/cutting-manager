@@ -18,8 +18,8 @@ import static com.cutting.manager.FxApplication.*;
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
     @Value("classpath:/fxml/manager.fxml")
     private Resource chartResource;
-    private String applicationTitle;
-    private ApplicationContext applicationContext;
+    private final String applicationTitle;
+    private final ApplicationContext applicationContext;
 
     public StageInitializer(@Value("Cutting manager") String applicationTitle,
                             ApplicationContext applicationContext) {
@@ -31,7 +31,7 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
     public void onApplicationEvent(StageReadyEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(chartResource.getURL());
-            fxmlLoader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
+            fxmlLoader.setControllerFactory(applicationContext::getBean);
             Parent parent = fxmlLoader.load();
 
             Stage stage = event.getStage();

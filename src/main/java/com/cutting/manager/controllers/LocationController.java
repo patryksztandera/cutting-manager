@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LocationController {
-    private LocationService locationService;
+    private final LocationService locationService;
     @FXML
     private TextField locationTextField;
     @FXML

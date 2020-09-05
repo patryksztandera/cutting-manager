@@ -10,6 +10,5 @@ public class MetalSheetController {
     public Button addButton;
 
     public void initialize() {
-
     }
 }
