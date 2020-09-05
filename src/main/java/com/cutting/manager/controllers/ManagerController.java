@@ -31,7 +31,7 @@ public class ManagerController {
     }
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
 
     }
 
