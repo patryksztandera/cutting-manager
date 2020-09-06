@@ -5,8 +5,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class TypeFxModel {
-    public StringProperty type = new SimpleStringProperty();
-    public StringProperty info = new SimpleStringProperty();
+    private final StringProperty type = new SimpleStringProperty();
+    private final StringProperty info = new SimpleStringProperty();
 
     public TypeFxModel(String type, String info) {
         this.type.set(type);
