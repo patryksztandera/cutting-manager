@@ -1,4 +1,9 @@
 package com.cutting.manager.models.repositories;
 
-public interface MetalSheetRepository {
+import com.cutting.manager.models.entities.MetalSheetEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MetalSheetRepository extends JpaRepository<MetalSheetEntity, Long> {
 }
