@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TypeRepository extends JpaRepository<TypeEntity, Long> {
+    TypeEntity getByType(String type);
 }
