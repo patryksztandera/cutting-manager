@@ -22,6 +22,13 @@ public class TypeService {
         return typeModelObservableList;
     }
 
+    public ObservableList<String> getTypes() {
+        ObservableList<String> typeObservableList = FXCollections.observableArrayList();
+
+        typeRepository.findAll().forEach(e -> typeObservableList.add(e.getType()));
+        return typeObservableList;
+    }
+
     public void add(TypeFxModel model) {
         typeRepository.save(mapFxModel(model));
     }

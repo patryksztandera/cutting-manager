@@ -22,6 +22,13 @@ public class LocationService {
         return locationModelObservableList;
     }
 
+    public ObservableList<String> getLocations() {
+        ObservableList<String> locationObservableList = FXCollections.observableArrayList();
+
+        locationRepository.findAll().forEach(e -> locationObservableList.add(e.getLocation()));
+        return locationObservableList;
+    }
+
     public void add(LocationFxModel model) {
         locationRepository.save(mapFxModel(model));
     }
