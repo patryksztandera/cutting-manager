@@ -86,6 +86,8 @@ public class MetalSheetController {
         this.lengthTextField.clear();
         this.widthTextField.clear();
         this.thicknessTextField.clear();
+        this.typeComboBox.setValue(null);
+        this.locationComboBox.setValue(null);
         initialize();
     }
 
