@@ -1,23 +1,36 @@
 .root {
-    -fx-font-size: 14px;
+    -fx-font-size: 12px;
     -fx-font-family: sans-serif;
     -fx-text-fill: #FAE61B;
     -fx-background-color: #4F4E4E;
 }
 
+ .text {
+    -fx-text-fill: white;
+}
+
 .button {
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-border-color: white;
     -fx-text-fill: #F6F5F0;
-    -fx-background-color: #273552;
-    -fx-background-radius: 20px;
+    -fx-background-color: #4F4E4E;
 }
 
 .button:hover {
-    -fx-background-color: #12B912;
+    -fx-background-color: #;
 }
 
 .combo-box {
-    -fx-text-fill: #F6F5F0;
-    -fx-background-color: #273552;
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-background-color: #4F4E4E;
+}
+
+.combo-box .cell{
+    -fx-text-fill: white;
 }
 
   .combo-box-base > .arrow-button > .arrow {
@@ -30,20 +43,50 @@
   .combo-box-popup > .list-view {
       -fx-border-style: solid;
       -fx-border-width: 1;
-      -fx-border-color: black;
-      -fx-background-color: #273552;
+      -fx-border-color: white;
+      -fx-background-color: #4F4E4E;
       -fx-background-insets: 0, 1;
   }
 
   .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
       -fx-padding: 1 10;
-      -fx-background: #273552;
+      -fx-background: #4F4E4E;
+  }
+
+  .combo-box-popup > .list-view > .placeholder > .label {
+      -fx-text-fill: white;
   }
 
 .text-field {
     -fx-border-style: solid;
     -fx-border-width: 1;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-text-fill: #F6F5F0;
-    -fx-background-color: #273552;
+    -fx-background-color: #4F4E4E;
+}
+
+.label {
+    -fx-text-fill: #F6F5F0
+}
+
+.table-view {
+    -fx-base: #4F4E4E;
+    -fx-background-color: #4F4E4E;
+    -fx-control-inner-background: #4F4E4E;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-border-color: white;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-border-width: 1;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-insets: 2;
 }
