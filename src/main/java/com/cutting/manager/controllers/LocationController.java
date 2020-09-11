@@ -40,4 +40,9 @@ public class LocationController {
         this.locationTextField.clear();
         initialize();
     }
+
+    public void deleteByContextMenu() {
+        locationService.delete(locationTable.getSelectionModel().getSelectedItem().getLocation());
+        initialize();
+    }
 }

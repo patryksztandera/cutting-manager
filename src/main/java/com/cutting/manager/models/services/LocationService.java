@@ -6,6 +6,7 @@ import com.cutting.manager.models.responses.LocationFxModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class LocationService {
@@ -35,5 +36,10 @@ public class LocationService {
 
     private LocationEntity mapFxModel(final LocationFxModel model) {
         return new LocationEntity(model.getLocation());
+    }
+
+    @Transactional
+    public void delete(String location) {
+        locationRepository.deleteByLocation(location);
     }
 }
