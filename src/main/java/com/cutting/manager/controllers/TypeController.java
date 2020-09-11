@@ -3,10 +3,7 @@ package com.cutting.manager.controllers;
 import com.cutting.manager.models.responses.TypeFxModel;
 import com.cutting.manager.models.services.TypeService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -44,6 +41,11 @@ public class TypeController {
         this.typeService.add(new TypeFxModel(this.typeTextField.getText(), this.infoTextField.getText()));
         this.typeTextField.clear();
         this.infoTextField.clear();
+        initialize();
+    }
+
+    public void deleteByContextMenu() {
+        typeService.delete(typeTable.getSelectionModel().getSelectedItem().getType());
         initialize();
     }
 }

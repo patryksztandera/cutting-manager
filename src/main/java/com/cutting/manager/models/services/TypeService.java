@@ -6,6 +6,7 @@ import com.cutting.manager.models.responses.TypeFxModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TypeService {
@@ -35,5 +36,10 @@ public class TypeService {
 
     private TypeEntity mapFxModel(final TypeFxModel model) {
         return new TypeEntity(model.getType(), model.getInfo());
+    }
+
+    @Transactional
+    public void delete(String type) {
+        typeRepository.deleteByType(type);
     }
 }
