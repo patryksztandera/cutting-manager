@@ -98,4 +98,9 @@ public class MetalSheetController {
     public void locationComboBoxOnAction() {
         this.location = this.locationComboBox.getSelectionModel().getSelectedItem();
     }
+
+    public void deleteByContextMenu() {
+        metalSheetService.deleteById(metalSheetTable.getSelectionModel().getSelectedItem().getId());
+        initialize();
+    }
 }

@@ -42,4 +42,9 @@ public class MetalSheetService {
                 typeRepository.getByType(model.getType()),
                 locationRepository.getByLocation(model.getLocation()));
     }
+
+    public void deleteById(Long id) {
+        metalSheetRepository.deleteById(id);
+        //metalSheetRepository.deleteByTimestamp(zonedDateTime);
+    }
 }

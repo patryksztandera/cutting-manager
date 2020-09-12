@@ -1,14 +1,12 @@
 package com.cutting.manager.models.responses;
 
 import com.cutting.manager.models.entities.MetalSheetEntity;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 import java.time.format.DateTimeFormatter;
 
 public class MetalSheetFxModel {
+    private final LongProperty id = new SimpleLongProperty();
     private final StringProperty zonedDateTime =  new SimpleStringProperty();
     private final DoubleProperty length = new SimpleDoubleProperty();
     private final DoubleProperty width = new SimpleDoubleProperty();
@@ -29,12 +27,22 @@ public class MetalSheetFxModel {
 
     public MetalSheetFxModel(MetalSheetEntity entity) {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+
+        this.id.setValue(entity.getId());
         this.zonedDateTime.setValue(entity.getTimestamp().format(formatter));
         this.length.setValue(entity.getLength());
         this.width.setValue(entity.getWidth());
         this.thickness.setValue(entity.getThickness());
         this.type.setValue(entity.getTypeEntity().getType());
         this.location.setValue(entity.getLocationEntity().getLocation());
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public LongProperty idProperty() {
+        return id;
     }
 
     public String getZonedDateTime() {
