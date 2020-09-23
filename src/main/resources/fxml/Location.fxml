@@ -37,7 +37,7 @@
       </HBox>
       <TableView fx:id="locationTable" prefHeight="350.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="locationColumn" prefWidth="550.0" text="Location" />
+          <TableColumn fx:id="locationColumn" onEditCommit="#onEditLocation" prefWidth="550.0" text="Location" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

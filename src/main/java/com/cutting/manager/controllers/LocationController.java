@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -33,6 +34,12 @@ public class LocationController {
     private void tableBindings() {
         this.locationTable.setItems(locationService.getAll());
         this.locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
+        editTable();
+    }
+
+    private void editTable() {
+        locationTable.setEditable(true);
+        locationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void addLocation() {
@@ -44,5 +51,11 @@ public class LocationController {
     public void deleteByContextMenu() {
         locationService.delete(locationTable.getSelectionModel().getSelectedItem().getLocation());
         initialize();
+    }
+
+    public void onEditLocation(TableColumn.CellEditEvent<LocationFxModel, String> locationFxModelStringCellEditEvent) {
+        locationService.updateLocation(
+                locationFxModelStringCellEditEvent.getOldValue(),
+                locationFxModelStringCellEditEvent.getNewValue());
     }
 }
