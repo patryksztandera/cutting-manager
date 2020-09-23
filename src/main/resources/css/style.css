@@ -13,6 +13,7 @@
     -fx-border-style: solid;
     -fx-border-width: 1;
     -fx-border-color: white;
+    -fx-border-radius: 10 10 10 10;
     -fx-text-fill: #F6F5F0;
     -fx-background-color: #4F4E4E;
 }
@@ -34,7 +35,7 @@
 }
 
   .combo-box-base > .arrow-button > .arrow {
-      -fx-background-color: black;
+      -fx-background-color: white;
       -fx-background-insets: 0 0 0 0;
       -fx-padding: 2 4;
       -fx-shape: "M 0 0 H 7 L 3.5 4 z";
@@ -75,9 +76,6 @@
     -fx-control-inner-background: #4F4E4E;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
-    -fx-border-style: solid;
-    -fx-border-width: 1;
-    -fx-border-color: white;
 }
 
 .table-view .column-header-background {
@@ -89,4 +87,10 @@
     -fx-background-color: transparent;
     -fx-border-color: white;
     -fx-border-insets: 2;
+}
+
+.table-row-cell {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: darkgrey;
 }
