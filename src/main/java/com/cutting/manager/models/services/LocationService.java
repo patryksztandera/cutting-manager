@@ -42,4 +42,10 @@ public class LocationService {
     public void delete(String location) {
         locationRepository.deleteByLocation(location);
     }
+
+    public void updateLocation(String oldLocation, String newLocation) {
+        LocationEntity entity = locationRepository.getByLocation(oldLocation);
+        entity.setLocation(newLocation);
+        locationRepository.save(entity);
+    }
 }
