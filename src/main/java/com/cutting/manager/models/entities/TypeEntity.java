@@ -43,4 +43,8 @@ public class TypeEntity {
     public void setType(String type) {
         this.type = type;
     }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 }

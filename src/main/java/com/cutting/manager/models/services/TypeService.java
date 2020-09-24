@@ -48,4 +48,10 @@ public class TypeService {
         entity.setType(newType);
         typeRepository.save(entity);
     }
+
+    public void updateInfo(String type, String newInfo) {
+        TypeEntity entity = typeRepository.getByType(type);
+        entity.setInfo(newInfo);
+        typeRepository.save(entity);
+    }
 }
