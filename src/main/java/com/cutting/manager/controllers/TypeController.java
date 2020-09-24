@@ -4,6 +4,7 @@ import com.cutting.manager.models.responses.TypeFxModel;
 import com.cutting.manager.models.services.TypeService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,6 +36,13 @@ public class TypeController {
         this.typeTable.setItems(typeService.getAll());
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         this.infoColumn.setCellValueFactory(cellData -> cellData.getValue().infoProperty());
+        editTable();
+    }
+
+    private void editTable() {
+        this.typeTable.setEditable(true);
+        this.typeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.infoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void addType() {
@@ -47,5 +55,17 @@ public class TypeController {
     public void deleteByContextMenu() {
         typeService.delete(typeTable.getSelectionModel().getSelectedItem().getType());
         initialize();
+    }
+
+    public void onEditType(TableColumn.CellEditEvent<TypeFxModel, String> typeFxModelStringCellEditEvent) {
+        typeService.updateType(
+                typeFxModelStringCellEditEvent.getOldValue(),
+                typeFxModelStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditInfo(TableColumn.CellEditEvent<TypeFxModel, String> typeFxModelStringCellEditEvent) {
+        typeService.updateInfo(
+                typeFxModelStringCellEditEvent.getRowValue().getType(),
+                typeFxModelStringCellEditEvent.getNewValue());
     }
 }

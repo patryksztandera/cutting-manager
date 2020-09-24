@@ -54,8 +54,8 @@
       </HBox>
       <TableView fx:id="typeTable" prefHeight="350.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="typeColumn" prefWidth="170.0" text="Type or steel grade" />
-          <TableColumn fx:id="infoColumn" minWidth="99.0" prefWidth="450.0" text="Additional info" />
+          <TableColumn fx:id="typeColumn" onEditCommit="#onEditType" prefWidth="170.0" text="Type or steel grade" />
+          <TableColumn fx:id="infoColumn" minWidth="99.0" onEditCommit="#onEditInfo" prefWidth="450.0" text="Additional info" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
