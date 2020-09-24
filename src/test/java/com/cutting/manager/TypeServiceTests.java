@@ -47,4 +47,15 @@ public class TypeServiceTests {
         typeService.updateType("type", "new");
         assertEquals("new", typeService.getTypes().get(0));
     }
+
+    @Test
+    void updateInfo() {
+        final TypeFxModel model = new TypeFxModel("type","info");
+
+        assertEquals(0,repository.count());
+        typeService.add(model);
+        assertEquals(1,repository.count());
+        typeService.updateInfo("type", "new info");
+        assertEquals("new info", typeService.getAll().get(0).getInfo());
+    }
 }
