@@ -39,4 +39,8 @@ public class TypeEntity {
     public String getInfo() {
         return info;
     }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

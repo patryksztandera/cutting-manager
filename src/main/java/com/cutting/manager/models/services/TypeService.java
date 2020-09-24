@@ -42,4 +42,10 @@ public class TypeService {
     public void delete(String type) {
         typeRepository.deleteByType(type);
     }
+
+    public void updateType(String oldType, String newType) {
+        TypeEntity entity = typeRepository.getByType(oldType);
+        entity.setType(newType);
+        typeRepository.save(entity);
+    }
 }

@@ -3,6 +3,7 @@ package com.cutting.manager;
 import com.cutting.manager.models.repositories.TypeRepository;
 import com.cutting.manager.models.responses.TypeFxModel;
 import com.cutting.manager.models.services.TypeService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,11 @@ public class TypeServiceTests {
     @Autowired
     private TypeRepository repository;
 
+    @AfterEach
+    void tearDown() {
+        repository.deleteAll();
+    }
+
     @Test
     void deleteTypeModel() {
         final TypeFxModel model = new TypeFxModel("type","info");
@@ -31,6 +37,7 @@ public class TypeServiceTests {
         assertEquals(0,repository.count());
     }
 
+    @Test
     void updateType() {
         final TypeFxModel model = new TypeFxModel("type","info");
 
