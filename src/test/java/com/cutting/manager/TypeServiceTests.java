@@ -30,4 +30,14 @@ public class TypeServiceTests {
         typeService.delete(model.getType());
         assertEquals(0,repository.count());
     }
+
+    void updateType() {
+        final TypeFxModel model = new TypeFxModel("type","info");
+
+        assertEquals(0,repository.count());
+        typeService.add(model);
+        assertEquals(1,repository.count());
+        typeService.updateType("type", "new");
+        assertEquals("new", typeService.getTypes().get(0));
+    }
 }
