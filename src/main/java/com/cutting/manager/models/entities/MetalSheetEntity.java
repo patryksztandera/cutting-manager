@@ -69,4 +69,16 @@ public class MetalSheetEntity {
     public LocationEntity getLocationEntity() {
         return locationEntity;
     }
+
+    public void setLength(Double length) {
+        this.length = length;
+    }
+
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
+    public void setThickness(Double thickness) {
+        this.thickness = thickness;
+    }
 }

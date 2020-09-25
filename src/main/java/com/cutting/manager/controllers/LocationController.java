@@ -38,8 +38,8 @@ public class LocationController {
     }
 
     private void editTable() {
-        locationTable.setEditable(true);
-        locationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.locationTable.setEditable(true);
+        this.locationColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void addLocation() {

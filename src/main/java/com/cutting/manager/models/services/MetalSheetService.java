@@ -45,6 +45,23 @@ public class MetalSheetService {
 
     public void deleteById(Long id) {
         metalSheetRepository.deleteById(id);
-        //metalSheetRepository.deleteByTimestamp(zonedDateTime);
+    }
+
+    public void updateLength(Long id, String length) {
+        MetalSheetEntity entity = metalSheetRepository.getById(id);
+        entity.setLength(Double.parseDouble(length));
+        metalSheetRepository.save(entity);
+    }
+
+    public void updateWidth(Long id, String width) {
+        MetalSheetEntity entity = metalSheetRepository.getById(id);
+        entity.setWidth(Double.parseDouble(width));
+        metalSheetRepository.save(entity);
+    }
+
+    public void updateThickness(Long id, String thickness) {
+        MetalSheetEntity entity = metalSheetRepository.getById(id);
+        entity.setThickness(Double.parseDouble(thickness));
+        metalSheetRepository.save(entity);
     }
 }
