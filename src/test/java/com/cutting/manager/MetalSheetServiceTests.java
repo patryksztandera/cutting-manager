@@ -1,12 +1,15 @@
 package com.cutting.manager;
 
+import com.cutting.manager.models.repositories.LocationRepository;
 import com.cutting.manager.models.repositories.MetalSheetRepository;
+import com.cutting.manager.models.repositories.TypeRepository;
 import com.cutting.manager.models.responses.LocationFxModel;
 import com.cutting.manager.models.responses.MetalSheetFxModel;
 import com.cutting.manager.models.responses.TypeFxModel;
 import com.cutting.manager.models.services.LocationService;
 import com.cutting.manager.models.services.MetalSheetService;
 import com.cutting.manager.models.services.TypeService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,10 @@ public class MetalSheetServiceTests {
 
     @Autowired
     private MetalSheetRepository repository;
+    @Autowired
+    private LocationRepository locationRepository;
+    @Autowired
+    private TypeRepository typeRepository;
 
     @BeforeEach
     void initializeDatabase() {
@@ -37,6 +44,13 @@ public class MetalSheetServiceTests {
         typeService.add(typeFxModel);
     }
 
+    @AfterEach
+    void tearDown() {
+        repository.deleteAll();
+        locationRepository.deleteAll();
+        typeRepository.deleteAll();
+    }
+
     @Test
     void deleteMetalSheetModel() {
         final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
@@ -44,7 +58,40 @@ public class MetalSheetServiceTests {
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.deleteById(3L);
+        metalSheetService.deleteById(12L);
         assertEquals(0,repository.count());
+    }
+
+    @Test
+    void updateLength() {
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+
+        assertEquals(0,repository.count());
+        metalSheetService.add(model);
+        assertEquals(1,repository.count());
+        metalSheetService.updateLength(3L,"4000.0");
+        assertEquals(4000D,repository.getById(3L).getLength());
+    }
+
+    @Test
+    void updateWidth() {
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+
+        assertEquals(0,repository.count());
+        metalSheetService.add(model);
+        assertEquals(1,repository.count());
+        metalSheetService.updateWidth(6L,"2000.0");
+        assertEquals(2000D,repository.getById(6L).getWidth());
+    }
+
+    @Test
+    void updateThickness() {
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+
+        assertEquals(0,repository.count());
+        metalSheetService.add(model);
+        assertEquals(1,repository.count());
+        metalSheetService.updateThickness(9L,"2000.0");
+        assertEquals(2000D,repository.getById(9L).getThickness());
     }
 }
