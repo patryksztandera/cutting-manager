@@ -103,9 +103,9 @@
       <TableView fx:id="metalSheetTable" prefHeight="350.0" prefWidth="200.0">
         <columns>
             <TableColumn fx:id="timestamp" prefWidth="125.0" text="Timestamp" />
-          <TableColumn fx:id="lengthColumn" prefWidth="60.0" text="Length" />
-          <TableColumn fx:id="widthColumn" prefWidth="60.0" text="Width" />
-            <TableColumn fx:id="thicknessColumn" prefWidth="60.0" text="Thickness" />
+          <TableColumn fx:id="lengthColumn" onEditCommit="#OnEditLength" prefWidth="60.0" text="Length" />
+          <TableColumn fx:id="widthColumn" onEditCommit="#onEditWidth" prefWidth="60.0" text="Width" />
+            <TableColumn fx:id="thicknessColumn" onEditCommit="#onEditThickness" prefWidth="60.0" text="Thickness" />
             <TableColumn fx:id="typeColumn" prefWidth="85.0" text="Type" />
             <TableColumn fx:id="locationColumn" prefWidth="185.0" text="Location" />
         </columns>

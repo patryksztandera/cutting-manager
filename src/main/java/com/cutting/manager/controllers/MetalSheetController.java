@@ -6,6 +6,7 @@ import com.cutting.manager.models.services.MetalSheetService;
 import com.cutting.manager.models.services.TypeService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -30,11 +31,11 @@ public class MetalSheetController {
     @FXML
     public TableColumn<MetalSheetFxModel, String> timestamp;
     @FXML
-    public TableColumn<MetalSheetFxModel, Number> lengthColumn;
+    public TableColumn<MetalSheetFxModel, String> lengthColumn;
     @FXML
-    public TableColumn<MetalSheetFxModel, Number> widthColumn;
+    public TableColumn<MetalSheetFxModel, String> widthColumn;
     @FXML
-    public TableColumn<MetalSheetFxModel, Number> thicknessColumn;
+    public TableColumn<MetalSheetFxModel, String> thicknessColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> typeColumn;
     @FXML
@@ -70,11 +71,19 @@ public class MetalSheetController {
     private void tableBindings() {
         this.metalSheetTable.setItems(metalSheetService.getAll());
         this.timestamp.setCellValueFactory(cellData -> cellData.getValue().zonedDateTimeProperty());
-        this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty());
-        this.widthColumn.setCellValueFactory(cellData -> cellData.getValue().widthProperty());
-        this.thicknessColumn.setCellValueFactory(cellData -> cellData.getValue().thicknessProperty());
+        this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty().asString());
+        this.widthColumn.setCellValueFactory(cellData -> cellData.getValue().widthProperty().asString());
+        this.thicknessColumn.setCellValueFactory(cellData -> cellData.getValue().thicknessProperty().asString());
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         this.locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
+        editTable();
+    }
+
+    private void editTable() {
+        this.metalSheetTable.setEditable(true);
+        this.lengthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.widthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.thicknessColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void addMetalSheet() {
@@ -102,5 +111,20 @@ public class MetalSheetController {
     public void deleteByContextMenu() {
         metalSheetService.deleteById(metalSheetTable.getSelectionModel().getSelectedItem().getId());
         initialize();
+    }
+
+    public void OnEditLength(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetModelStringEvent) {
+        metalSheetService.updateLength(metalSheetModelStringEvent.getRowValue().getId(),
+                metalSheetModelStringEvent.getNewValue());
+    }
+
+    public void onEditWidth(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
+        metalSheetService.updateWidth(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
+                metalSheetFxModelStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditThickness(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
+        metalSheetService.updateThickness(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
+                metalSheetFxModelStringCellEditEvent.getNewValue());
     }
 }
