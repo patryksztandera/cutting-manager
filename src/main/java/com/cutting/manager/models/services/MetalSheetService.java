@@ -39,6 +39,7 @@ public class MetalSheetService {
                 model.getLength(),
                 model.getWidth(),
                 model.getThickness(),
+                model.getQuantity(),
                 typeRepository.getByType(model.getType()),
                 locationRepository.getByLocation(model.getLocation()));
     }

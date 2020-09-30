@@ -22,6 +22,9 @@ public class MetalSheetEntity {
     @Column
     private Double thickness;
 
+    @Column
+    private Integer quantity;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_type")
     private TypeEntity typeEntity;
@@ -30,11 +33,12 @@ public class MetalSheetEntity {
     @JoinColumn(name = "id_location")
     private LocationEntity locationEntity;
 
-    public MetalSheetEntity( Double length, Double width, Double thickness, TypeEntity typeEntity, LocationEntity locationEntity) {
+    public MetalSheetEntity( Double length, Double width, Double thickness, Integer quantity, TypeEntity typeEntity, LocationEntity locationEntity) {
         this.timestamp = ZonedDateTime.now();
         this.length = length;
         this.width = width;
         this.thickness = thickness;
+        this.quantity = quantity;
         this.typeEntity = typeEntity;
         this.locationEntity = locationEntity;
     }
@@ -62,6 +66,10 @@ public class MetalSheetEntity {
         return thickness;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
     public TypeEntity getTypeEntity() {
         return typeEntity;
     }
@@ -80,5 +88,9 @@ public class MetalSheetEntity {
 
     public void setThickness(Double thickness) {
         this.thickness = thickness;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
