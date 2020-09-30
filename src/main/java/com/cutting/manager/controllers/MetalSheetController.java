@@ -23,6 +23,8 @@ public class MetalSheetController {
     @FXML
     public TextField thicknessTextField;
     @FXML
+    public TextField quantityTextField;
+    @FXML
     public ComboBox<String> typeComboBox;
     @FXML
     public ComboBox<String> locationComboBox;
@@ -40,6 +42,8 @@ public class MetalSheetController {
     public TableColumn<MetalSheetFxModel, String> typeColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> locationColumn;
+    @FXML
+    public TableColumn<MetalSheetFxModel, String> quantityColumn;
 
     private String type;
     private String location;
@@ -51,7 +55,7 @@ public class MetalSheetController {
     }
 
     public void initialize() {
-        tableBindings();
+        tableSettings();
         addBindings();
     }
 
@@ -65,10 +69,9 @@ public class MetalSheetController {
 
         this.typeComboBox.setItems(typeService.getTypes());
         this.locationComboBox.setItems(locationService.getLocations());
-
     }
 
-    private void tableBindings() {
+    private void tableSettings() {
         this.metalSheetTable.setItems(metalSheetService.getAll());
         this.timestamp.setCellValueFactory(cellData -> cellData.getValue().zonedDateTimeProperty());
         this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty().asString());
@@ -76,6 +79,7 @@ public class MetalSheetController {
         this.thicknessColumn.setCellValueFactory(cellData -> cellData.getValue().thicknessProperty().asString());
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         this.locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
+        this.quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asString());
         editTable();
     }
 
@@ -87,14 +91,23 @@ public class MetalSheetController {
     }
 
     public void addMetalSheet() {
+        String quantity;
+        if (this.quantityTextField.textProperty().isNotEmpty().get()) {
+            quantity = this.quantityTextField.getText();
+        } else {
+            quantity = "1";
+        }
+
         metalSheetService.add(new MetalSheetFxModel(Double.parseDouble(this.lengthTextField.getText()),
                 Double.parseDouble(this.widthTextField.getText()),
                 Double.parseDouble(this.thicknessTextField.getText()),
+                Integer.parseInt(quantity),
                 this.type,
                 this.location));
         this.lengthTextField.clear();
         this.widthTextField.clear();
         this.thicknessTextField.clear();
+        this.quantityTextField.clear();
         this.typeComboBox.setValue(null);
         this.locationComboBox.setValue(null);
         initialize();
