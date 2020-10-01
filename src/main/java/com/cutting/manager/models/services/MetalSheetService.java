@@ -65,4 +65,10 @@ public class MetalSheetService {
         entity.setThickness(Double.parseDouble(thickness));
         metalSheetRepository.save(entity);
     }
+
+    public void updateQuantity(Long id, String quantity) {
+        MetalSheetEntity entity = metalSheetRepository.getById(id);
+        entity.setQuantity(Integer.parseInt(quantity));
+        metalSheetRepository.save(entity);
+    }
 }
