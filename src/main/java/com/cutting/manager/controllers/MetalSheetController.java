@@ -88,6 +88,7 @@ public class MetalSheetController {
         this.lengthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         this.widthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         this.thicknessColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     public void addMetalSheet() {
@@ -138,6 +139,11 @@ public class MetalSheetController {
 
     public void onEditThickness(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
         metalSheetService.updateThickness(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
+                metalSheetFxModelStringCellEditEvent.getNewValue());
+    }
+
+    public void onEditQuantity(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
+        metalSheetService.updateQuantity(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
                 metalSheetFxModelStringCellEditEvent.getNewValue());
     }
 }
