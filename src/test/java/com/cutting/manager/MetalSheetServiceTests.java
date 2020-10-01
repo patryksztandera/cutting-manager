@@ -53,18 +53,18 @@ public class MetalSheetServiceTests {
 
     @Test
     void deleteMetalSheetModel() {
-        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,1,"type","location");
 
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.deleteById(12L);
+        metalSheetService.deleteById(15L);
         assertEquals(0,repository.count());
     }
 
     @Test
     void updateLength() {
-        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,1,"type","location");
 
         assertEquals(0,repository.count());
         metalSheetService.add(model);
@@ -75,7 +75,7 @@ public class MetalSheetServiceTests {
 
     @Test
     void updateWidth() {
-        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,1,"type","location");
 
         assertEquals(0,repository.count());
         metalSheetService.add(model);
@@ -86,12 +86,23 @@ public class MetalSheetServiceTests {
 
     @Test
     void updateThickness() {
-        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,"type","location");
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,1,"type","location");
 
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.updateThickness(9L,"2000.0");
-        assertEquals(2000D,repository.getById(9L).getThickness());
+        metalSheetService.updateThickness(12L,"2000.0");
+        assertEquals(2000D,repository.getById(12L).getThickness());
+    }
+
+    @Test
+    void updateQuantity() {
+        final MetalSheetFxModel model = new MetalSheetFxModel(3000D,1500D,3D,1,"type","location");
+
+        assertEquals(0,repository.count());
+        metalSheetService.add(model);
+        assertEquals(1,repository.count());
+        metalSheetService.updateQuantity(9L,"2");
+        assertEquals(2,repository.getById(9L).getQuantity());
     }
 }
