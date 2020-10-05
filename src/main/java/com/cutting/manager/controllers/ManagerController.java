@@ -20,6 +20,8 @@ public class ManagerController {
     private Resource locationResource;
     @Value("classpath:/fxml/type.fxml")
     private Resource typeResource;
+    @Value("classpath:/fxml/job.fxml")
+    private Resource jobResource;
     private final ApplicationContext applicationContext;
     @FXML
     public BorderPane borderPane;
@@ -47,6 +49,11 @@ public class ManagerController {
     @FXML
     public void loadType() throws IOException {
         borderPane.setCenter(loadStage(typeResource));
+    }
+
+    @FXML
+    public void loadJob() throws IOException {
+        borderPane.setCenter(loadStage(jobResource));
     }
 
     private Parent loadStage(Resource resource) throws IOException {
