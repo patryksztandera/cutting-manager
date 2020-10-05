@@ -2,6 +2,8 @@ package com.cutting.manager.models.entities;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "metal_sheet")
@@ -32,6 +34,9 @@ public class MetalSheetEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_location")
     private LocationEntity locationEntity;
+
+    @OneToMany(mappedBy = "metalSheetEntity", cascade = CascadeType.ALL)
+    private List<JobEntity> job = new ArrayList<>();
 
     public MetalSheetEntity( Double length, Double width, Double thickness, Integer quantity, TypeEntity typeEntity, LocationEntity locationEntity) {
         this.timestamp = ZonedDateTime.now();
