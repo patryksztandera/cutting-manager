@@ -7,11 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Component;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -44,6 +46,7 @@ public class JobController {
     public void initialize() {
         addBindings();
         tableSettings();
+        imageViewSettings();
     }
 
     private void addBindings() {
@@ -57,6 +60,13 @@ public class JobController {
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         this.postTimeColumn.setCellValueFactory(cellData -> cellData.getValue().postTimeProperty());
         this.endTimeColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeProperty());
+    }
+
+    private void imageViewSettings() {
+        this.jobTable.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
+            Image image = new Image(new ByteArrayInputStream(observable.getValue().getImgByte()));
+            this.imageView.setImage(image);
+        }));
     }
 
     public void addJob() {
