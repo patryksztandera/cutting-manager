@@ -25,6 +25,24 @@ public class JobService {
         return jobFxModelObservableList;
     }
 
+    public ObservableList<JobFxModel> getUnfinishedJobs() {
+        ObservableList<JobFxModel> jobFxModelObservableList = FXCollections.observableArrayList();
+
+        jobRepository.findByEndTimeIsNull().forEach(e -> jobFxModelObservableList.add(new JobFxModel(e)));
+        return jobFxModelObservableList;
+    }
+
+    public ObservableList<JobFxModel> getFinishedJobs() {
+        ObservableList<JobFxModel> jobFxModelObservableList = FXCollections.observableArrayList();
+
+        jobRepository.findByEndTimeIsNotNull().forEach(e -> {
+            JobFxModel jobFxModel = new JobFxModel(e);
+            jobFxModel.setEndTime(e.getEndTime());
+            jobFxModelObservableList.add(jobFxModel);
+        });
+        return jobFxModelObservableList;
+    }
+
     public void add(JobFxModel model) {
         jobRepository.save(mapFxModel(model));
     }
