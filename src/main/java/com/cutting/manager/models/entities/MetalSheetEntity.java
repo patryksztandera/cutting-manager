@@ -27,6 +27,9 @@ public class MetalSheetEntity {
     @Column
     private Integer quantity;
 
+    @Column
+    private String owner;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_type")
     private TypeEntity typeEntity;
@@ -38,12 +41,13 @@ public class MetalSheetEntity {
     @OneToMany(mappedBy = "metalSheetEntity", cascade = CascadeType.ALL)
     private List<JobEntity> job = new ArrayList<>();
 
-    public MetalSheetEntity( Double length, Double width, Double thickness, Integer quantity, TypeEntity typeEntity, LocationEntity locationEntity) {
+    public MetalSheetEntity( Double length, Double width, Double thickness, Integer quantity, String owner, TypeEntity typeEntity, LocationEntity locationEntity) {
         this.timestamp = ZonedDateTime.now();
         this.length = length;
         this.width = width;
         this.thickness = thickness;
         this.quantity = quantity;
+        this.owner = owner;
         this.typeEntity = typeEntity;
         this.locationEntity = locationEntity;
     }
@@ -73,6 +77,10 @@ public class MetalSheetEntity {
 
     public Integer getQuantity() {
         return quantity;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 
     public TypeEntity getTypeEntity() {

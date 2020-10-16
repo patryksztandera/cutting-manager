@@ -14,14 +14,16 @@ public class MetalSheetFxModel {
     private final IntegerProperty quantity = new SimpleIntegerProperty();
     private final StringProperty type = new SimpleStringProperty();
     private final StringProperty location = new SimpleStringProperty();
+    private final StringProperty owner = new SimpleStringProperty();
 
-    public MetalSheetFxModel(Double length, Double width, Double thickness, Integer quantity, String type, String location) {
+    public MetalSheetFxModel(Double length, Double width, Double thickness, Integer quantity, String owner, String type, String location) {
         this.length.setValue(length);
         this.width.setValue(width);
         this.thickness.setValue(thickness);
         this.quantity.setValue(quantity);
         this.type.setValue(type);
         this.location.setValue(location);
+        this.owner.setValue(owner);
     }
 
     public MetalSheetFxModel() {
@@ -38,6 +40,7 @@ public class MetalSheetFxModel {
         this.quantity.setValue(entity.getQuantity());
         this.type.setValue(entity.getTypeEntity().getType());
         this.location.setValue(entity.getLocationEntity().getLocation());
+        this.owner.setValue(entity.getOwner());
     }
 
     public long getId() {
@@ -102,5 +105,13 @@ public class MetalSheetFxModel {
 
     public StringProperty locationProperty() {
         return location;
+    }
+
+    public String getOwner() {
+        return owner.get();
+    }
+
+    public StringProperty ownerProperty() {
+        return owner;
     }
 }
