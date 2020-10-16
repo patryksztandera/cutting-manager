@@ -25,6 +25,8 @@ public class MetalSheetController {
     @FXML
     public TextField quantityTextField;
     @FXML
+    public TextField ownerTextField;
+    @FXML
     public ComboBox<String> typeComboBox;
     @FXML
     public ComboBox<String> locationComboBox;
@@ -44,6 +46,7 @@ public class MetalSheetController {
     public TableColumn<MetalSheetFxModel, String> locationColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> quantityColumn;
+    public TableColumn<MetalSheetFxModel, String> ownerColumn;
 
     private String type;
     private String location;
@@ -80,6 +83,7 @@ public class MetalSheetController {
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         this.locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
         this.quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asString());
+        this.ownerColumn.setCellValueFactory(cellData -> cellData.getValue().ownerProperty());
         editTable();
     }
 
@@ -103,12 +107,14 @@ public class MetalSheetController {
                 Double.parseDouble(this.widthTextField.getText()),
                 Double.parseDouble(this.thicknessTextField.getText()),
                 Integer.parseInt(quantity),
+                this.ownerTextField.getText(),
                 this.type,
                 this.location));
         this.lengthTextField.clear();
         this.widthTextField.clear();
         this.thicknessTextField.clear();
         this.quantityTextField.clear();
+        this.ownerTextField.clear();
         this.typeComboBox.setValue(null);
         this.locationComboBox.setValue(null);
         initialize();
