@@ -3,7 +3,6 @@ package com.cutting.manager.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -20,13 +19,11 @@ public class ManagerController {
     private Resource locationResource;
     @Value("classpath:/fxml/type.fxml")
     private Resource typeResource;
-    @Value("classpath:/fxml/job.fxml")
-    private Resource jobResource;
+    @Value("classpath:/fxml/jobMenu.fxml")
+    private Resource jobMenuResource;
     private final ApplicationContext applicationContext;
     @FXML
     public BorderPane borderPane;
-    @FXML
-    public Button metalSheetButton;
 
     public ManagerController(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -53,7 +50,7 @@ public class ManagerController {
 
     @FXML
     public void loadJob() throws IOException {
-        borderPane.setCenter(loadStage(jobResource));
+        borderPane.setCenter(loadStage(jobMenuResource));
     }
 
     private Parent loadStage(Resource resource) throws IOException {

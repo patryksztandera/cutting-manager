@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1150.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.ManagerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1155.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.ManagerController">
    <left>
-      <VBox prefHeight="500.0" prefWidth="226.0" styleClass="menu-section" BorderPane.alignment="TOP_RIGHT">
+      <VBox prefHeight="500.0" prefWidth="230.0" styleClass="menu-section" BorderPane.alignment="TOP_RIGHT">
          <children>
-            <Button fx:id="metalSheetButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadMetalSheet" prefHeight="40.0" text="METAL SHEET" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="metalSheetButton" alignment="CENTER" mnemonicParsing="false" onAction="#loadMetalSheet" prefHeight="40.0" text="METAL SHEET" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -20,12 +20,12 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="typeButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadType" prefHeight="40.0" text="TYPE OR STEEL GRADE" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="typeButton" mnemonicParsing="false" onAction="#loadType" prefHeight="40.0" text="TYPE OR STEEL GRADE" wrapText="true">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="jobButton" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#loadJob" prefHeight="40.0" text="JOB" textAlignment="CENTER" wrapText="true">
+            <Button fx:id="jobButton" mnemonicParsing="false" onAction="#loadJob" prefHeight="40.0" text="JOB" wrapText="true">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Button>
@@ -35,4 +35,7 @@
    <top>
       <HBox prefHeight="50.0" prefWidth="800.0" styleClass="header-section" BorderPane.alignment="CENTER" />
    </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
