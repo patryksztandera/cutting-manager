@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class JobFxModel {
@@ -16,6 +17,7 @@ public class JobFxModel {
     private final LongProperty metalSheetId = new SimpleLongProperty();
     private byte[] imgByte = new byte[0];
 
+    final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
     public JobFxModel(String name, String fileType, Long metalSheetId, byte[] imgByte) {
         this.name.setValue(name);
@@ -28,8 +30,6 @@ public class JobFxModel {
     }
 
     public JobFxModel(JobEntity entity) {
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
-
         this.name.setValue(entity.getName());
         this.postTime.setValue(entity.getPostTime().format(formatter));
         this.fileType.setValue(entity.getFileType());
@@ -79,5 +79,9 @@ public class JobFxModel {
 
     public byte[] getImgByte() {
         return imgByte;
+    }
+
+    public void setEndTime(ZonedDateTime endTime) {
+        this.endTime.set(endTime.format(formatter));
     }
 }
