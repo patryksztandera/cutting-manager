@@ -46,6 +46,7 @@ public class MetalSheetController {
     public TableColumn<MetalSheetFxModel, String> locationColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> quantityColumn;
+    @FXML
     public TableColumn<MetalSheetFxModel, String> ownerColumn;
 
     private String type;

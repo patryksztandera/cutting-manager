@@ -23,6 +23,10 @@ public class MetalSheetService {
         this.locationRepository = locationRepository;
     }
 
+    public MetalSheetFxModel getOne(Long id) {
+        return new MetalSheetFxModel(metalSheetRepository.getById(id));
+    }
+
     public ObservableList<MetalSheetFxModel> getAll() {
         ObservableList<MetalSheetFxModel> metalSheetModelObservableList = FXCollections.observableArrayList();
 
