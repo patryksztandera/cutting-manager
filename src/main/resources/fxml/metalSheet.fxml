@@ -12,38 +12,47 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="837.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.MetalSheetController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="837.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.MetalSheetController">
    <children>
-      <HBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="200.0">
+      <HBox alignment="TOP_CENTER" prefHeight="58.0" prefWidth="837.0">
          <children>
-            <TextField fx:id="lengthTextField" prefHeight="25.0" prefWidth="110.0" promptText="LENGTH">
+            <TextField fx:id="lengthTextField" prefHeight="25.0" prefWidth="110.0" promptText="Length">
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets right="5.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="widthTextField" prefHeight="25.0" prefWidth="110.0" promptText="WIDTH">
+            <TextField fx:id="widthTextField" prefHeight="25.0" prefWidth="110.0" promptText="Width">
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets right="5.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <TextField fx:id="thicknessTextField" prefHeight="25.0" prefWidth="110.0" promptText="THICKNESS">
+            <TextField fx:id="thicknessTextField" prefHeight="25.0" prefWidth="120.0" promptText="Thickness">
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets right="5.0" top="5.0" />
                </HBox.margin>
             </TextField>
-            <ComboBox fx:id="typeComboBox" onAction="#typeComboBoxOnAction" prefHeight="25.0" prefWidth="202.0" promptText="TYPE or STEEL GRADE">
+            <ComboBox fx:id="typeComboBox" onAction="#typeComboBoxOnAction" prefHeight="25.0" prefWidth="202.0" promptText="Type or steel grade">
                <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets right="5.0" top="5.0" />
                </HBox.margin>
             </ComboBox>
-            <ComboBox fx:id="locationComboBox" onAction="#locationComboBoxOnAction" prefWidth="150.0" promptText="LOCATION">
+            <ComboBox fx:id="locationComboBox" onAction="#locationComboBoxOnAction" prefWidth="150.0" promptText="Location">
+               <HBox.margin>
+                  <Insets right="5.0" top="5.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addMetalSheet" prefHeight="41.0" prefWidth="116.0" text="Add">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
-            </ComboBox>
-            <VBox alignment="TOP_RIGHT" prefHeight="53.0" prefWidth="105.0">
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="46.0" prefWidth="837.0">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="48.0">
                <children>
-                  <Label text="QUANTITY">
+                  <Label prefHeight="20.0" prefWidth="57.0" text="Quantity">
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
@@ -53,27 +62,28 @@
                   <Insets top="5.0" />
                </HBox.margin>
             </VBox>
-            <TextField fx:id="quantityTextField" prefHeight="25.0" prefWidth="75.0" promptText="1">
+            <TextField fx:id="quantityTextField" prefHeight="32.0" prefWidth="42.0" promptText="1">
                <HBox.margin>
                   <Insets top="5.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addMetalSheet" prefHeight="41.0" prefWidth="116.0" text="Add">
+            <TextField fx:id="ownerTextField" prefHeight="32.0" prefWidth="233.0" promptText="Optional owner">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
-            </Button>
+            </TextField>
          </children>
       </HBox>
       <TableView fx:id="metalSheetTable" prefHeight="350.0" prefWidth="200.0">
         <columns>
-            <TableColumn fx:id="timestamp" prefWidth="125.0" text="Timestamp" />
+            <TableColumn fx:id="timestamp" prefWidth="157.0" text="Timestamp" />
           <TableColumn fx:id="lengthColumn" onEditCommit="#OnEditLength" prefWidth="69.0" text="Length" />
-          <TableColumn fx:id="widthColumn" onEditCommit="#onEditWidth" prefWidth="69.0" text="Width" />
-            <TableColumn fx:id="thicknessColumn" onEditCommit="#onEditThickness" prefWidth="75.0" text="Thickness" />
-            <TableColumn fx:id="typeColumn" prefWidth="114.0" text="Type" />
-            <TableColumn fx:id="locationColumn" prefWidth="181.0" text="Location" />
-            <TableColumn fx:id="quantityColumn" onEditCommit="#onEditQuantity" prefWidth="71.0" text="Quantity" />
+          <TableColumn fx:id="widthColumn" minWidth="3.0" onEditCommit="#onEditWidth" prefWidth="73.0" text="Width" />
+            <TableColumn fx:id="thicknessColumn" onEditCommit="#onEditThickness" prefWidth="78.0" text="Thickness" />
+            <TableColumn fx:id="typeColumn" prefWidth="120.0" text="Type" />
+            <TableColumn fx:id="locationColumn" prefWidth="212.0" text="Location" />
+            <TableColumn fx:id="quantityColumn" onEditCommit="#onEditQuantity" prefWidth="70.0" text="Quantity" />
+            <TableColumn fx:id="ownerColumn" prefWidth="75.0" text="Owner" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
