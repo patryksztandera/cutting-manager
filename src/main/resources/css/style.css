@@ -94,7 +94,7 @@
 
 .table-view .column-header .label {
   -fx-alignment: center-left;
-  }
+}
 
 .table-row-cell {
   -fx-border-style: solid;
@@ -142,4 +142,12 @@
 
 .header-section {
   -fx-background-color: #d3e629;
+}
+
+.menu-job-section .button-menu {
+  -fx-font-size: 17 px;
+  -fx-font-weight: bold;
+  -fx-border-width: 0;
+  -fx-text-fill: #59584e;
+  -fx-background-color: transparent;
 }
