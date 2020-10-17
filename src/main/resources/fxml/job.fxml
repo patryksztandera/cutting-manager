@@ -1,38 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.JobController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.JobController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox>
          <children>
-            <TextField fx:id="nameTextField" promptText="Name" />
-            <TextField fx:id="pathTextField" promptText="Path" />
-            <TextField fx:id="metalSheetIdTextField" promptText="Metal sheet id" />
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addJob" text="Add" />
+            <TextField fx:id="nameTextField" prefHeight="25.0" prefWidth="500.0" promptText="Job name">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
          </children>
       </HBox>
-      <HBox prefHeight="200.0" prefWidth="200.0">
+      <HBox alignment="CENTER_LEFT">
          <children>
-            <TableView fx:id="jobTable" prefHeight="199.0" prefWidth="261.0">
+            <Button fx:id="fileChooserButton" mnemonicParsing="false" onAction="#fileOnAction" prefWidth="75.0" text="File">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <TextField fx:id="pathTextField" prefHeight="25.0" prefWidth="415.0" promptText="Path" />
+         </children>
+      </HBox>
+      <HBox prefWidth="200.0">
+         <children>
+            <TableView fx:id="metalSheetTable" prefWidth="500.0">
               <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="107.0" text="Name" />
-                  <TableColumn fx:id="postTimeColumn" prefWidth="75.0" text="Post" />
-                  <TableColumn fx:id="endTimeColumn" prefWidth="75.0" text="Done" />
+                <TableColumn fx:id="lengthColumn" prefWidth="75.0" text="Length" />
+                <TableColumn fx:id="widthColumn" prefWidth="75.0" text="Width" />
+                  <TableColumn fx:id="thicknessColumn" prefWidth="75.0" text="Thickness" />
+                  <TableColumn fx:id="typeColumn" prefWidth="110.0" text="Type" />
+                  <TableColumn fx:id="ownerColumn" prefWidth="141.0" text="Owner" />
               </columns>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
             </TableView>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <ImageView fx:id="imageView" fitHeight="197.0" fitWidth="394.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </VBox>
          </children>
       </HBox>
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Button fx:id="selectMetalSheetButton" mnemonicParsing="false" onAction="#selectOnAction" text="Select metal sheet">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Label fx:id="metalSheetLabel">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <CheckBox fx:id="checkSheet" mnemonicParsing="false" />
+         </children>
+      </HBox>
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#addJob" text="Add">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </Button>
    </children>
 </VBox>
