@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.JobListController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.JobListController">
    <children>
-      <TableView fx:id="jobTable" prefHeight="342.0" prefWidth="880.0">
+      <TableView fx:id="jobTable">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="126.0" text="Name" />
           <TableColumn fx:id="postTimeColumn" prefWidth="167.0" text="Post time" />
@@ -22,5 +23,14 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </TableView>
+      <HBox alignment="TOP_RIGHT" prefWidth="200.0" styleClass="menu-job-section">
+         <children>
+            <Button fx:id="showButton" mnemonicParsing="false" onAction="#showOnAction" text="SHOW SELECTED">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </VBox>
