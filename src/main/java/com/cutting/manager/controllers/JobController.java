@@ -42,6 +42,7 @@ public class JobController {
     public TableColumn<MetalSheetFxModel, String> typeColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> ownerColumn;
+    @FXML
     public CheckBox checkSheet;
 
     MetalSheetFxModel model;
@@ -59,6 +60,10 @@ public class JobController {
 
     private void addBindings() {
         this.checkSheet.disableProperty().set(true);
+        this.selectMetalSheetButton.disableProperty().set(true);
+        this.metalSheetTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldSelection, newSelection) -> { this.selectMetalSheetButton.disableProperty().set(false);
+        });
         this.addButton.disableProperty().bind(nameTextField.textProperty().isEmpty()
                 .or(pathTextField.textProperty().isEmpty()).or(this.checkSheet.selectedProperty().not()));
     }
