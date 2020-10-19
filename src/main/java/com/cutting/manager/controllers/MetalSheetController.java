@@ -66,17 +66,17 @@ public class MetalSheetController {
     private void addBindings() {
         this.addButton.disableProperty().bind(
                 this.lengthTextField.textProperty().isEmpty()
-                .or(this.widthTextField.textProperty().isEmpty())
-                .or(this.thicknessTextField.textProperty().isEmpty())
-                .or(this.typeComboBox.valueProperty().isNull())
-                .or(this.locationComboBox.valueProperty().isNull()));
+                        .or(this.widthTextField.textProperty().isEmpty())
+                        .or(this.thicknessTextField.textProperty().isEmpty())
+                        .or(this.typeComboBox.valueProperty().isNull())
+                        .or(this.locationComboBox.valueProperty().isNull()));
 
         this.typeComboBox.setItems(typeService.getTypes());
         this.locationComboBox.setItems(locationService.getLocations());
     }
 
     private void tableSettings() {
-        this.metalSheetTable.setItems(metalSheetService.getAll());
+        this.metalSheetTable.setItems(metalSheetService.getAllExisting());
         this.timestamp.setCellValueFactory(cellData -> cellData.getValue().zonedDateTimeProperty());
         this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty().asString());
         this.widthColumn.setCellValueFactory(cellData -> cellData.getValue().widthProperty().asString());
@@ -151,6 +151,6 @@ public class MetalSheetController {
 
     public void onEditQuantity(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
         metalSheetService.updateQuantity(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
-                metalSheetFxModelStringCellEditEvent.getNewValue());
+                Integer.parseInt(metalSheetFxModelStringCellEditEvent.getNewValue()));
     }
 }

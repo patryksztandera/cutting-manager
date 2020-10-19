@@ -27,10 +27,10 @@ public class MetalSheetService {
         return new MetalSheetFxModel(metalSheetRepository.getById(id));
     }
 
-    public ObservableList<MetalSheetFxModel> getAll() {
+    public ObservableList<MetalSheetFxModel> getAllExisting() {
         ObservableList<MetalSheetFxModel> metalSheetModelObservableList = FXCollections.observableArrayList();
 
-        metalSheetRepository.findAll().forEach(e -> metalSheetModelObservableList.add(new MetalSheetFxModel(e)));
+        metalSheetRepository.findByQuantityGreaterThan(0).forEach(e -> metalSheetModelObservableList.add(new MetalSheetFxModel(e)));
         return metalSheetModelObservableList;
     }
 
@@ -71,9 +71,9 @@ public class MetalSheetService {
         metalSheetRepository.save(entity);
     }
 
-    public void updateQuantity(Long id, String quantity) {
+    public void updateQuantity(Long id, Integer quantity) {
         MetalSheetEntity entity = metalSheetRepository.getById(id);
-        entity.setQuantity(Integer.parseInt(quantity));
+        entity.setQuantity(quantity);
         metalSheetRepository.save(entity);
     }
 }

@@ -62,14 +62,15 @@ public class JobController {
         this.checkSheet.disableProperty().set(true);
         this.selectMetalSheetButton.disableProperty().set(true);
         this.metalSheetTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldSelection, newSelection) -> { this.selectMetalSheetButton.disableProperty().set(false);
-        });
+                (observable, oldSelection, newSelection) -> {
+                    this.selectMetalSheetButton.disableProperty().set(false);
+                });
         this.addButton.disableProperty().bind(nameTextField.textProperty().isEmpty()
                 .or(pathTextField.textProperty().isEmpty()).or(this.checkSheet.selectedProperty().not()));
     }
 
     private void tableSettings() {
-        this.metalSheetTable.setItems(metalSheetService.getAll());
+        this.metalSheetTable.setItems(metalSheetService.getAllExisting());
         this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty());
         this.widthColumn.setCellValueFactory(cellData -> cellData.getValue().widthProperty());
         this.thicknessColumn.setCellValueFactory(cellData -> cellData.getValue().thicknessProperty());
