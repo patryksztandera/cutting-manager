@@ -7,6 +7,7 @@ import com.cutting.manager.models.services.TypeService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.NumberStringConverter;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,17 +36,17 @@ public class MetalSheetController {
     @FXML
     public TableColumn<MetalSheetFxModel, String> timestamp;
     @FXML
-    public TableColumn<MetalSheetFxModel, String> lengthColumn;
+    public TableColumn<MetalSheetFxModel, Number> lengthColumn;
     @FXML
-    public TableColumn<MetalSheetFxModel, String> widthColumn;
+    public TableColumn<MetalSheetFxModel, Number> widthColumn;
     @FXML
-    public TableColumn<MetalSheetFxModel, String> thicknessColumn;
+    public TableColumn<MetalSheetFxModel, Number> thicknessColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> typeColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> locationColumn;
     @FXML
-    public TableColumn<MetalSheetFxModel, String> quantityColumn;
+    public TableColumn<MetalSheetFxModel, Number> quantityColumn;
     @FXML
     public TableColumn<MetalSheetFxModel, String> ownerColumn;
 
@@ -78,22 +79,22 @@ public class MetalSheetController {
     private void tableSettings() {
         this.metalSheetTable.setItems(metalSheetService.getAllExisting());
         this.timestamp.setCellValueFactory(cellData -> cellData.getValue().zonedDateTimeProperty());
-        this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty().asString());
-        this.widthColumn.setCellValueFactory(cellData -> cellData.getValue().widthProperty().asString());
-        this.thicknessColumn.setCellValueFactory(cellData -> cellData.getValue().thicknessProperty().asString());
+        this.lengthColumn.setCellValueFactory(cellData -> cellData.getValue().lengthProperty());
+        this.widthColumn.setCellValueFactory(cellData -> cellData.getValue().widthProperty());
+        this.thicknessColumn.setCellValueFactory(cellData -> cellData.getValue().thicknessProperty());
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().typeProperty());
         this.locationColumn.setCellValueFactory(cellData -> cellData.getValue().locationProperty());
-        this.quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asString());
+        this.quantityColumn.setCellValueFactory(cellData -> cellData.getValue().quantityProperty());
         this.ownerColumn.setCellValueFactory(cellData -> cellData.getValue().ownerProperty());
         editTable();
     }
 
     private void editTable() {
         this.metalSheetTable.setEditable(true);
-        this.lengthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.widthColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.thicknessColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        this.quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.lengthColumn.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        this.widthColumn.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        this.thicknessColumn.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+        this.quantityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
     }
 
     public void addMetalSheet() {
@@ -103,14 +104,17 @@ public class MetalSheetController {
         } else {
             quantity = "1";
         }
-
-        metalSheetService.add(new MetalSheetFxModel(Double.parseDouble(this.lengthTextField.getText()),
+        MetalSheetFxModel model = new MetalSheetFxModel(Double.parseDouble(this.lengthTextField.getText()),
                 Double.parseDouble(this.widthTextField.getText()),
                 Double.parseDouble(this.thicknessTextField.getText()),
                 Integer.parseInt(quantity),
-                this.ownerTextField.getText(),
                 this.type,
-                this.location));
+                this.location);
+        if (!this.ownerTextField.getText().isEmpty()) {
+            model.setOwner(this.ownerTextField.getText());
+        }
+        metalSheetService.add(model);
+
         this.lengthTextField.clear();
         this.widthTextField.clear();
         this.thicknessTextField.clear();
@@ -134,23 +138,23 @@ public class MetalSheetController {
         initialize();
     }
 
-    public void OnEditLength(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetModelStringEvent) {
+    public void OnEditLength(TableColumn.CellEditEvent<MetalSheetFxModel, Number> metalSheetModelStringEvent) {
         metalSheetService.updateLength(metalSheetModelStringEvent.getRowValue().getId(),
-                metalSheetModelStringEvent.getNewValue());
+                metalSheetModelStringEvent.getNewValue().doubleValue());
     }
 
-    public void onEditWidth(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
+    public void onEditWidth(TableColumn.CellEditEvent<MetalSheetFxModel, Number> metalSheetFxModelStringCellEditEvent) {
         metalSheetService.updateWidth(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
-                metalSheetFxModelStringCellEditEvent.getNewValue());
+                metalSheetFxModelStringCellEditEvent.getNewValue().doubleValue());
     }
 
-    public void onEditThickness(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
+    public void onEditThickness(TableColumn.CellEditEvent<MetalSheetFxModel, Number> metalSheetFxModelStringCellEditEvent) {
         metalSheetService.updateThickness(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
-                metalSheetFxModelStringCellEditEvent.getNewValue());
+                metalSheetFxModelStringCellEditEvent.getNewValue().doubleValue());
     }
 
-    public void onEditQuantity(TableColumn.CellEditEvent<MetalSheetFxModel, String> metalSheetFxModelStringCellEditEvent) {
+    public void onEditQuantity(TableColumn.CellEditEvent<MetalSheetFxModel, Number> metalSheetFxModelStringCellEditEvent) {
         metalSheetService.updateQuantity(metalSheetFxModelStringCellEditEvent.getRowValue().getId(),
-                Integer.parseInt(metalSheetFxModelStringCellEditEvent.getNewValue()));
+                metalSheetFxModelStringCellEditEvent.getNewValue().intValue());
     }
 }

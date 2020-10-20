@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class MetalSheetFxModel {
     private final LongProperty id = new SimpleLongProperty();
-    private final StringProperty zonedDateTime =  new SimpleStringProperty();
+    private final StringProperty zonedDateTime = new SimpleStringProperty();
     private final DoubleProperty length = new SimpleDoubleProperty();
     private final DoubleProperty width = new SimpleDoubleProperty();
     private final DoubleProperty thickness = new SimpleDoubleProperty();
@@ -16,14 +16,13 @@ public class MetalSheetFxModel {
     private final StringProperty location = new SimpleStringProperty();
     private final StringProperty owner = new SimpleStringProperty();
 
-    public MetalSheetFxModel(Double length, Double width, Double thickness, Integer quantity, String owner, String type, String location) {
+    public MetalSheetFxModel(Double length, Double width, Double thickness, Integer quantity, String type, String location) {
         this.length.setValue(length);
         this.width.setValue(width);
         this.thickness.setValue(thickness);
         this.quantity.setValue(quantity);
         this.type.setValue(type);
         this.location.setValue(location);
-        this.owner.setValue(owner);
     }
 
     public MetalSheetFxModel() {
@@ -113,5 +112,9 @@ public class MetalSheetFxModel {
 
     public StringProperty ownerProperty() {
         return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner.set(owner);
     }
 }

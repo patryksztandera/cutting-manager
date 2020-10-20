@@ -53,21 +53,21 @@ public class MetalSheetService {
         metalSheetRepository.deleteById(id);
     }
 
-    public void updateLength(Long id, String length) {
+    public void updateLength(Long id, Double length) {
         MetalSheetEntity entity = metalSheetRepository.getById(id);
-        entity.setLength(Double.parseDouble(length));
+        entity.setLength(length);
         metalSheetRepository.save(entity);
     }
 
-    public void updateWidth(Long id, String width) {
+    public void updateWidth(Long id, Double width) {
         MetalSheetEntity entity = metalSheetRepository.getById(id);
-        entity.setWidth(Double.parseDouble(width));
+        entity.setWidth(width);
         metalSheetRepository.save(entity);
     }
 
-    public void updateThickness(Long id, String thickness) {
+    public void updateThickness(Long id, Double thickness) {
         MetalSheetEntity entity = metalSheetRepository.getById(id);
-        entity.setThickness(Double.parseDouble(thickness));
+        entity.setThickness(thickness);
         metalSheetRepository.save(entity);
     }
 
