@@ -54,6 +54,7 @@ public class JobListController {
     }
 
     public void initialize() {
+        this.showButton.disableProperty().set(true);
         tableSettings();
         passJobToDifferentController();
     }
@@ -63,6 +64,7 @@ public class JobListController {
 
         this.jobTable.getSelectionModel().selectedItemProperty().addListener((observable, oldSelection, newSelection) -> {
             jobSingleton.setJobFxModel(observable.getValue());
+            this.showButton.disableProperty().set(false);
         });
     }
 
@@ -85,7 +87,7 @@ public class JobListController {
     public void showOnAction(ActionEvent actionEvent) throws IOException {
         Scene jobViewerScene = new Scene(loadStage(jobViewerResource));
 
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         window.setScene(jobViewerScene);
         window.show();
@@ -95,5 +97,9 @@ public class JobListController {
         FXMLLoader fxmlLoader = new FXMLLoader(resource.getURL());
         fxmlLoader.setControllerFactory(applicationContext::getBean);
         return fxmlLoader.load();
+    }
+
+    public void deleteByContextMenu() {
+        jobService.deleteById(this.jobTable.getSelectionModel().getSelectedItem().getId());
     }
 }
