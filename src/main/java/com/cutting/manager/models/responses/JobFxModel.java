@@ -10,6 +10,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class JobFxModel {
+    private final LongProperty id = new SimpleLongProperty();
     private final StringProperty name = new SimpleStringProperty();
     private final StringProperty postTime =  new SimpleStringProperty();
     private final StringProperty endTime =  new SimpleStringProperty();
@@ -30,11 +31,20 @@ public class JobFxModel {
     }
 
     public JobFxModel(JobEntity entity) {
+        this.id.setValue(entity.getId());
         this.name.setValue(entity.getName());
         this.postTime.setValue(entity.getPostTime().format(formatter));
         this.fileType.setValue(entity.getFileType());
         this.metalSheetId.setValue(entity.getMetalSheetEntity().getId());
         this.imgByte = entity.getImgByte();
+    }
+
+    public long getId() {
+        return id.get();
+    }
+
+    public LongProperty idProperty() {
+        return id;
     }
 
     public String getName() {

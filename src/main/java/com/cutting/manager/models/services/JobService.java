@@ -7,6 +7,9 @@ import com.cutting.manager.models.responses.JobFxModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.ZonedDateTime;
 
 @Service
 public class JobService {
@@ -53,5 +56,16 @@ public class JobService {
                 model.getFileType(),
                 model.getImgByte(),
                 metalSheetRepository.getById(model.getMetalSheetId()));
+    }
+
+    public void deleteById(Long id) {
+        jobRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void setEndTime(Long id) {
+        JobEntity entity = this.jobRepository.getOne(id);
+        entity.setEndTime(ZonedDateTime.now());
+        this.jobRepository.save(entity);
     }
 }
