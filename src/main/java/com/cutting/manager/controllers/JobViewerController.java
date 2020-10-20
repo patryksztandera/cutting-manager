@@ -118,8 +118,10 @@ public class JobViewerController {
     }
 
     public void doneOnAction() {
-        jobService.setEndTime(jobFxModel.getId());
         metalSheetService.updateQuantity(metalSheetFxModel.getId(), metalSheetFxModel.getQuantity() - 1);
         initialize();
+        if (metalSheetFxModel.getQuantity() == 0) {
+            jobService.setEndTime(jobFxModel.getId());
+        }
     }
 }
