@@ -16,6 +16,10 @@ public class TypeService {
         this.typeRepository = typeRepository;
     }
 
+    public TypeFxModel getByType(String type) {
+        return new TypeFxModel(typeRepository.getByType(type));
+    }
+
     public ObservableList<TypeFxModel> getAll() {
         ObservableList<TypeFxModel> typeModelObservableList = FXCollections.observableArrayList();
 
