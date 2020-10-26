@@ -16,7 +16,7 @@ import static com.cutting.manager.FxApplication.*;
 
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
-    @Value("classpath:/fxml/manager.fxml")
+    @Value("classpath:/fxml/loginForm.fxml")
     private Resource chartResource;
     private final String applicationTitle;
     private final ApplicationContext applicationContext;
