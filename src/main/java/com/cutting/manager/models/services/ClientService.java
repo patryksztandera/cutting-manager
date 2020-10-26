@@ -15,6 +15,10 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
+    public ClientFxModel getByEmail(String email) {
+        return new ClientFxModel(clientRepository.getByEmail(email));
+    }
+
     public ObservableList<ClientFxModel> getAll() {
         ObservableList<ClientFxModel> clientFxModelObservableList = FXCollections.observableArrayList();
 
