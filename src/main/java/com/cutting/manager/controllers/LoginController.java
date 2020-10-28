@@ -5,11 +5,13 @@ import com.cutting.manager.singleton.ClientSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -58,6 +60,11 @@ public class LoginController {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         window.setScene(managerScene);
+
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((primaryScreenBounds.getWidth() - window.getWidth()) / 2);
+        window.setY((primaryScreenBounds.getHeight() - window.getHeight()) / 2);
+
         window.show();
     }
 }
