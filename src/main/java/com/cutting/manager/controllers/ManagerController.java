@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
@@ -31,6 +34,10 @@ public class ManagerController {
     public BorderPane borderPane;
     @FXML
     public Button userButton;
+    @FXML
+    public Label displayLabel;
+    @FXML
+    public Label temperatureLabel;
     ClientFxModel clientFxModel;
 
     public ManagerController(ApplicationContext applicationContext) {
@@ -44,6 +51,11 @@ public class ManagerController {
 
         this.userButton.disableProperty().set(!this.clientFxModel.isAdmin());
 
+        this.displayLabel.setText("Hello, " + this.clientFxModel.getName() + " " + this.clientFxModel.getSurname());
+
+        Document document = Jsoup
+                .connect("https://www.accuweather.com/pl/pl/warsaw/274663/weather-forecast/274663").get();
+        this.temperatureLabel.setText("Warsaw, " + document.getElementsByClass("temp").get(0).text());
     }
 
     @FXML
