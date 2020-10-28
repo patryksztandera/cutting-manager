@@ -1,10 +1,7 @@
 package com.cutting.manager.models.responses;
 
 import com.cutting.manager.models.entities.ClientEntity;
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class ClientFxModel {
     private final LongProperty id = new SimpleLongProperty();
@@ -12,12 +9,14 @@ public class ClientFxModel {
     private final StringProperty surname = new SimpleStringProperty();
     private final StringProperty email = new SimpleStringProperty();
     private final StringProperty password = new SimpleStringProperty();
+    private final BooleanProperty admin = new SimpleBooleanProperty();
 
-    public ClientFxModel(String name, String surname, String email, String password) {
+    public ClientFxModel(String name, String surname, String email, String password, Boolean admin) {
         this.name.setValue(name);
         this.surname.setValue(surname);
         this.email.setValue(email);
         this.password.setValue(password);
+        this.admin.setValue(admin);
     }
 
     public ClientFxModel() {
@@ -29,6 +28,7 @@ public class ClientFxModel {
         this.surname.setValue(entity.getSurname());
         this.email.setValue(entity.getEmail());
         this.password.setValue(entity.getPassword());
+        this.admin.setValue(entity.getAdmin());
     }
 
     public long getId() {
@@ -69,5 +69,13 @@ public class ClientFxModel {
 
     public StringProperty passwordProperty() {
         return password;
+    }
+
+    public boolean isAdmin() {
+        return admin.get();
+    }
+
+    public BooleanProperty adminProperty() {
+        return admin;
     }
 }

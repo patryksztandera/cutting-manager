@@ -35,6 +35,7 @@ public class ClientService {
                 model.getName(),
                 model.getSurname(),
                 model.getEmail(),
-                model.getPassword());
+                model.getPassword(),
+                model.isAdmin());
     }
 }

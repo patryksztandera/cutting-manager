@@ -23,11 +23,15 @@ public class ClientEntity {
     @Column
     private String password;
 
-    public ClientEntity(String name, String surname, @Email String email, String password) {
+    @Column(name = "admin_role")
+    private Boolean admin;
+
+    public ClientEntity(String name, String surname, @Email String email, String password, Boolean admin) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+        this.admin = admin;
     }
 
     public ClientEntity() {
@@ -51,5 +55,9 @@ public class ClientEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
     }
 }
