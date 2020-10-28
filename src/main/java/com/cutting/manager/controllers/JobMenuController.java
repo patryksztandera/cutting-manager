@@ -1,5 +1,7 @@
 package com.cutting.manager.controllers;
 
+import com.cutting.manager.models.responses.ClientFxModel;
+import com.cutting.manager.singleton.ClientSingleton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,11 +31,18 @@ public class JobMenuController {
     public Button finishedJobsButton;
     @FXML
     public AnchorPane anchorPane;
+    ClientFxModel clientFxModel;
 
     public JobMenuController(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
+    public void initialize() {
+        ClientSingleton clientSingleton = ClientSingleton.getINSTANCE();
+        this.clientFxModel = clientSingleton.getClientFxModel();
+
+        this.newJobButton.disableProperty().set(!this.clientFxModel.isAdmin());
+    }
     public void loadNewJob() throws IOException {
         anchorPane.getChildren().clear();
         anchorPane.getChildren().add(loadStage(jobResource));

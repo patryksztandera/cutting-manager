@@ -1,8 +1,11 @@
 package com.cutting.manager.controllers;
 
+import com.cutting.manager.models.responses.ClientFxModel;
+import com.cutting.manager.singleton.ClientSingleton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -21,16 +24,26 @@ public class ManagerController {
     private Resource typeResource;
     @Value("classpath:/fxml/jobMenu.fxml")
     private Resource jobMenuResource;
+    @Value("classpath:/fxml/register.fxml")
+    private Resource userResource;
     private final ApplicationContext applicationContext;
     @FXML
     public BorderPane borderPane;
+    @FXML
+    public Button userButton;
+    ClientFxModel clientFxModel;
 
     public ManagerController(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        ClientSingleton clientSingleton = ClientSingleton.getINSTANCE();
+        this.clientFxModel = clientSingleton.getClientFxModel();
+
+        this.userButton.disableProperty().set(!this.clientFxModel.isAdmin());
+
     }
 
     @FXML
@@ -51,6 +64,11 @@ public class ManagerController {
     @FXML
     public void loadJob() throws IOException {
         borderPane.setCenter(loadStage(jobMenuResource));
+    }
+
+    @FXML
+    public void loadUser() throws IOException {
+        borderPane.setCenter(loadStage(userResource));
     }
 
     private Parent loadStage(Resource resource) throws IOException {

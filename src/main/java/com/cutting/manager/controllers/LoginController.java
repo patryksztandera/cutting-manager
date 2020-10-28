@@ -1,6 +1,7 @@
 package com.cutting.manager.controllers;
 
 import com.cutting.manager.models.services.ClientService;
+import com.cutting.manager.singleton.ClientSingleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,8 +33,6 @@ public class LoginController {
     public PasswordField passwordField;
     @FXML
     public Button loginButton;
-    @FXML
-    public Button registerButton;
 
     public LoginController(ClientService clientService, ApplicationContext applicationContext) {
         this.clientService = clientService;
@@ -44,13 +43,11 @@ public class LoginController {
     }
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
+        ClientSingleton clientSingleton = ClientSingleton.getINSTANCE();
+        clientSingleton.setClientFxModel(clientService.getByEmail(this.emailTextField.getText()));
         if (BCrypt.checkpw(this.passwordField.getText(), clientService.getByEmail(this.emailTextField.getText()).getPassword())) {
             loadStage(actionEvent, managerResource);
         }
-    }
-
-    public void registerAction(ActionEvent actionEvent) throws IOException {
-        loadStage(actionEvent, registerResource);
     }
 
     private void loadStage(ActionEvent actionEvent, Resource resource) throws IOException {
