@@ -83,7 +83,9 @@ public class JobController {
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Image", "*.jpg", "*.jpeg", "*.png"));
         this.file = fileChooser.showOpenDialog(null);
-        pathTextField.setText(this.file.getAbsolutePath());
+        if (this.file != null) {
+            pathTextField.setText(this.file.getAbsolutePath());
+        }
     }
 
     public void selectOnAction() {

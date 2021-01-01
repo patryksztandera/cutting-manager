@@ -69,7 +69,7 @@ public class MetalSheetServiceTests {
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.updateLength(3L,"4000.0");
+        metalSheetService.updateLength(3L,4000D);
         assertEquals(4000D,repository.getById(3L).getLength());
     }
 
@@ -80,7 +80,7 @@ public class MetalSheetServiceTests {
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.updateWidth(6L,"2000.0");
+        metalSheetService.updateWidth(6L,2000D);
         assertEquals(2000D,repository.getById(6L).getWidth());
     }
 
@@ -91,7 +91,7 @@ public class MetalSheetServiceTests {
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.updateThickness(12L,"2000.0");
+        metalSheetService.updateThickness(12L,2000D);
         assertEquals(2000D,repository.getById(12L).getThickness());
     }
 
@@ -102,7 +102,7 @@ public class MetalSheetServiceTests {
         assertEquals(0,repository.count());
         metalSheetService.add(model);
         assertEquals(1,repository.count());
-        metalSheetService.updateQuantity(9L,"2");
+        metalSheetService.updateQuantity(9L,2);
         assertEquals(2,repository.getById(9L).getQuantity());
     }
 }

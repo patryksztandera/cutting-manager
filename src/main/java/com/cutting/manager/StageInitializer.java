@@ -17,7 +17,7 @@ import static com.cutting.manager.FxApplication.*;
 @Component
 public class StageInitializer implements ApplicationListener<StageReadyEvent> {
     @Value("classpath:/fxml/loginForm.fxml")
-    private Resource chartResource;
+    private Resource resource;
     private final String applicationTitle;
     private final ApplicationContext applicationContext;
 
@@ -30,7 +30,7 @@ public class StageInitializer implements ApplicationListener<StageReadyEvent> {
     @Override
     public void onApplicationEvent(StageReadyEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(chartResource.getURL());
+            FXMLLoader fxmlLoader = new FXMLLoader(resource.getURL());
             fxmlLoader.setControllerFactory(applicationContext::getBean);
             Parent parent = fxmlLoader.load();
 

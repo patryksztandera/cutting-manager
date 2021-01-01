@@ -4,14 +4,10 @@ import com.cutting.manager.models.responses.ClientFxModel;
 import com.cutting.manager.models.services.ClientService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
@@ -72,14 +68,11 @@ public class RegisterController {
                 BCrypt.hashpw(this.passwordField.getText(), BCrypt.gensalt()),
                 this.adminCheckBox.isSelected()));
 
-        FXMLLoader fxmlLoader = new FXMLLoader(managerResource.getURL());
-        fxmlLoader.setControllerFactory(applicationContext::getBean);
-
-        Scene managerScene = new Scene(fxmlLoader.load());
-
-        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-        window.setScene(managerScene);
-        window.show();
+        this.nameTextField.clear();
+        this.surnameTextField.clear();
+        this.emailTextFiled.clear();
+        this.adminCheckBox.setSelected(false);
+        this.passwordField.clear();
+        this.repeatField.clear();
     }
 }
