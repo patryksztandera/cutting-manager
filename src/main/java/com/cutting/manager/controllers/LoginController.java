@@ -42,12 +42,24 @@ public class LoginController {
     }
 
     public void initialize() {
+        passwordFieldBindings();
+        loginButtonBindings();
+    }
+
+    private void passwordFieldBindings() {
+        this.passwordField.disableProperty().bind(this.emailTextField.textProperty().isEmpty());
+    }
+
+    private void loginButtonBindings() {
+        this.loginButton.disableProperty().bind(this.emailTextField.textProperty().isEmpty()
+                .or(this.passwordField.textProperty().isEmpty()));
     }
 
     public void loginOnAction(ActionEvent actionEvent) throws IOException {
         ClientSingleton clientSingleton = ClientSingleton.getINSTANCE();
         clientSingleton.setClientFxModel(clientService.getByEmail(this.emailTextField.getText()));
-        if (BCrypt.checkpw(this.passwordField.getText(), clientService.getByEmail(this.emailTextField.getText()).getPassword())) {
+        if (BCrypt.checkpw(this.passwordField.getText(), clientService.getByEmail(
+                this.emailTextField.getText()).getPassword())) {
             loadStage(actionEvent, managerResource);
         }
     }
