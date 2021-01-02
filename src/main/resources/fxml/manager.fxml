@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1155.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.ManagerController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1175.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.ManagerController">
    <left>
-      <VBox prefHeight="500.0" prefWidth="230.0" styleClass="menu-section" BorderPane.alignment="TOP_RIGHT">
+      <VBox prefHeight="500.0" prefWidth="250.0" styleClass="menu-section" BorderPane.alignment="TOP_RIGHT">
          <children>
             <Button fx:id="metalSheetButton" alignment="CENTER" mnemonicParsing="false" onAction="#loadMetalSheet" prefHeight="40.0" text="METAL SHEET" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
@@ -39,7 +39,14 @@
       </VBox>
    </left>
    <top>
-      <HBox prefHeight="50.0" prefWidth="800.0" styleClass="header-section" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="800.0" styleClass="menu-section" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="logOutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logOutOnAction" text="LOG OUT" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </Button>
+         </children></HBox>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">

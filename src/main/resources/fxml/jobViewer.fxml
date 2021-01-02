@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1155.0" styleClass="menu-job-section" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cutting.manager.controllers.JobViewerController">
    <children>
-      <Button fx:id="backButton" layoutX="543.0" layoutY="487.0" mnemonicParsing="false" onAction="#backToPreviousStage" text="BACK" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="543.0" AnchorPane.rightAnchor="543.0" AnchorPane.topAnchor="487.0" />
+      <Button fx:id="backButton" layoutX="54.0" layoutY="485.0" mnemonicParsing="false" onAction="#backToPreviousStage" text="BACK" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="1032.0" AnchorPane.topAnchor="490.0" />
       <ImageView fx:id="imageView" fitHeight="450.0" fitWidth="800.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
       <Label fx:id="name" layoutX="857.0" layoutY="37.0" text="Label" AnchorPane.leftAnchor="857.0" AnchorPane.topAnchor="37.0" />
       <Label fx:id="length" layoutX="857.0" layoutY="84.0" text="Label" />
@@ -17,7 +17,7 @@
       <Label fx:id="type" layoutX="857.0" layoutY="213.0" text="Label" />
       <Label fx:id="info" alignment="TOP_LEFT" layoutX="857.0" layoutY="249.0" prefHeight="84.0" prefWidth="245.0" text="Label" wrapText="true" />
       <Label fx:id="locationLabel" layoutX="857.0" layoutY="366.0" text="Label" />
-      <Button fx:id="doneButton" layoutX="1032.0" layoutY="490.0" mnemonicParsing="false" onAction="#doneOnAction" text="DONE" AnchorPane.bottomAnchor="22.0" />
+      <Button fx:id="doneButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="1032.0" layoutY="490.0" mnemonicParsing="false" onAction="#doneOnAction" text="DONE" textAlignment="RIGHT" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="1025.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="490.0" />
       <Label fx:id="quantityLabel" layoutX="949.0" layoutY="432.0" text="Label" />
       <Label layoutX="857.0" layoutY="432.0" text="Qunatity: " />
       <Label layoutX="857.0" layoutY="340.0" text="Location" />

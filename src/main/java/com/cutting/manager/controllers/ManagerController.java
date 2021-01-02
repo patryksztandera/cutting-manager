@@ -2,12 +2,18 @@ package com.cutting.manager.controllers;
 
 import com.cutting.manager.models.responses.ClientFxModel;
 import com.cutting.manager.singleton.ClientSingleton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,8 +33,12 @@ public class ManagerController {
     private Resource typeResource;
     @Value("classpath:/fxml/jobMenu.fxml")
     private Resource jobMenuResource;
-    @Value("classpath:/fxml/register.fxml")
+    @Value("classpath:/fxml/changePassword.fxml")
     private Resource userResource;
+    @Value("classpath:/fxml/register.fxml")
+    private Resource adminResource;
+    @Value("classpath:/fxml/loginForm.fxml")
+    private Resource loginResource;
     private final ApplicationContext applicationContext;
     @FXML
     public BorderPane borderPane;
@@ -48,8 +58,6 @@ public class ManagerController {
     public void initialize() throws IOException {
         ClientSingleton clientSingleton = ClientSingleton.getINSTANCE();
         this.clientFxModel = clientSingleton.getClientFxModel();
-
-        this.userButton.disableProperty().set(!this.clientFxModel.isAdmin());
 
         this.displayLabel.setText("Hello, " + this.clientFxModel.getName() + " " + this.clientFxModel.getSurname());
 
@@ -80,7 +88,26 @@ public class ManagerController {
 
     @FXML
     public void loadUser() throws IOException {
-        borderPane.setCenter(loadStage(userResource));
+        if (this.clientFxModel.isAdmin()) {
+            borderPane.setCenter(loadStage(adminResource));
+        } else {
+            borderPane.setCenter(loadStage(userResource));
+        }
+    }
+
+    public void logOutOnAction(ActionEvent actionEvent) throws IOException {
+        Scene loginScene = new Scene(loadStage(loginResource));
+
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(loginScene);
+
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((primaryScreenBounds.getWidth() - window.getWidth()) / 2);
+        window.setY((primaryScreenBounds.getHeight() - window.getHeight()) / 2);
+
+        window.show();
+
     }
 
     private Parent loadStage(Resource resource) throws IOException {
