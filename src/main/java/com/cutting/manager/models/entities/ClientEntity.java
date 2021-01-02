@@ -57,6 +57,10 @@ public class ClientEntity {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Boolean getAdmin() {
         return admin;
     }

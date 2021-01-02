@@ -38,4 +38,10 @@ public class ClientService {
                 model.getPassword(),
                 model.isAdmin());
     }
+
+    public void changePassword(String email, String newPassword) {
+        ClientEntity clientEntity = clientRepository.getByEmail(email);
+        clientEntity.setPassword(newPassword);
+        clientRepository.save(clientEntity);
+    }
 }
