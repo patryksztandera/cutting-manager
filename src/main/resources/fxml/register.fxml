@@ -16,7 +16,7 @@
             <TextField fx:id="emailTextFiled" layoutX="84.0" layoutY="140.0" promptText="Email" />
             <Button fx:id="signButton" layoutX="129.0" layoutY="301.0" mnemonicParsing="false" onAction="#signUp" text="SIGN UP" />
             <PasswordField fx:id="passwordField" layoutX="84.0" layoutY="219.0" promptText="Password" />
-            <PasswordField fx:id="repeatField" layoutX="85.0" layoutY="260.0" promptText="Repeat password" />
+            <PasswordField fx:id="repeatPasswordField" layoutX="85.0" layoutY="260.0" promptText="Repeat password" />
             <CheckBox fx:id="adminCheckBox" layoutX="85.0" layoutY="174.0" mnemonicParsing="false" text=" Admin permissions" />
          </children>
       </AnchorPane>

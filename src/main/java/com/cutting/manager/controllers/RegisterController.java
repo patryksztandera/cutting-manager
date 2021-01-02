@@ -9,7 +9,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,6 @@ import java.io.IOException;
 @Component
 public class RegisterController {
     private final ClientService clientService;
-    private final ApplicationContext applicationContext;
     @Value("classpath:/fxml/manager.fxml")
     private Resource managerResource;
     @FXML
@@ -33,22 +31,21 @@ public class RegisterController {
     @FXML
     public PasswordField passwordField;
     @FXML
-    public PasswordField repeatField;
+    public PasswordField repeatPasswordField;
     @FXML
     public CheckBox adminCheckBox;
 
-    public RegisterController(ClientService clientService, ApplicationContext applicationContext) {
+    public RegisterController(ClientService clientService) {
         this.clientService = clientService;
-        this.applicationContext = applicationContext;
     }
 
     public void initialize(){
-        repeatFieldBindings();
+        repeatPasswordFieldBindings();
         buttonBindings();
     }
 
-    private void repeatFieldBindings() {
-        this.repeatField.disableProperty().bind(this.passwordField.textProperty().isEmpty()
+    private void repeatPasswordFieldBindings() {
+        this.repeatPasswordField.disableProperty().bind(this.passwordField.textProperty().isEmpty()
                 .or(this.passwordField.textProperty().length().lessThan(4)));
     }
 
@@ -57,7 +54,7 @@ public class RegisterController {
                 .or(this.surnameTextField.textProperty().isEmpty())
                 .or(this.emailTextFiled.textProperty().isEmpty())
                 .or(this.passwordField.textProperty().isEmpty())
-                .or(this.repeatField.textProperty().isNotEqualTo((this.passwordField.textProperty()))));
+                .or(this.repeatPasswordField.textProperty().isNotEqualTo((this.passwordField.textProperty()))));
     }
 
     public void signUp(ActionEvent actionEvent) throws IOException {
@@ -73,6 +70,6 @@ public class RegisterController {
         this.emailTextFiled.clear();
         this.adminCheckBox.setSelected(false);
         this.passwordField.clear();
-        this.repeatField.clear();
+        this.repeatPasswordField.clear();
     }
 }
